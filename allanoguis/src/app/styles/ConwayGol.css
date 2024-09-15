@@ -1,0 +1,52 @@
+.conway-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid white;
+    padding: 3rem;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.cell.alive {
+    background-color: #000;
+}
+
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.conwaybtns{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.start {
+    color: white;
+    background-color: green;
+}
+
+.stop {
+    color: white;
+    background-color: red;
+}
+
+.random {
+    color: white;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}
