@@ -14,14 +14,11 @@
 /out/
 
 # production
-
+/build
 
 # misc
 .DS_Store
 *.pem
-
-#backupfiles
-/backup
 
 # debug
 npm-debug.log*
