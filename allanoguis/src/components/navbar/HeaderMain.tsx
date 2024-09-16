@@ -8,7 +8,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "../../hooks/use-scroll";
 import { cn } from "../../lib/utils";
 
-const Header = () => {
+const HeaderMain = () => {
   const scrolled = useScroll(5);
   const selectedLayout = useSelectedLayoutSegment();
 
@@ -43,4 +43,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderMain;

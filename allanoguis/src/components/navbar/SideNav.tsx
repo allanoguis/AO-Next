@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { SIDENAV_ITEMS } from "./constants";
-import { SideNavItem } from "./types";
+import { SIDENAV_ITEMS } from "./NavElements";
+import { SideNavItem } from "./NavElements";
 import { Icon } from "@iconify/react";
 
 const SideNav = () => {

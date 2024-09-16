@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import SideNav from "../components/navbar/side-nav";
-import Header from "../components/navbar/header";
-import HeaderMobile from "../components/navbar/header-mobile";
-import PageWrapper from "../components/navbar/page-wrapper";
-import MarginWidthWrapper from "../components/navbar/mainwrapper";
+import SideNav from "../components/navbar/SideNav";
+import Header from "../components/navbar/HeaderMain";
+import HeaderMobile from "../components/navbar/HeaderMobile";
+import WrapperPage from "../components/navbar/WrapperPage";
+import WrapperMain from "../components/navbar/WrapperMain";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,11 +36,11 @@ export default function RootLayout({
         <div className="flex">
           <SideNav />
           <main className="flex-1">
-            <MarginWidthWrapper>
+            <WrapperMain>
               <Header />
               <HeaderMobile />
-              <PageWrapper>{children}</PageWrapper>
-            </MarginWidthWrapper>
+              <WrapperPage>{children}</WrapperPage>
+            </WrapperMain>
           </main>
         </div>
       </body>
