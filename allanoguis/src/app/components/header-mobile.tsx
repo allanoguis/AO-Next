@@ -1,10 +1,9 @@
 "use client";
 
-import React, { ReactNode, useEffect, useRef, useState } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { useCallback } from "react";
 import { SIDENAV_ITEMS } from "../components/constants";
 import { SideNavItem } from "../components/types";
 import { Icon } from "@iconify/react";
@@ -36,9 +35,11 @@ const sidebar = {
 
 const HeaderMobile = () => {
   const pathname = usePathname();
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLElement>(null);
   const { height } = useDimensions(containerRef);
   const [isOpen, toggleOpen] = useCycle(false, true);
+
+  const handleToggle = useCallback(() => toggleOpen(), [toggleOpen]);
 
   return (
     <motion.nav
@@ -62,14 +63,14 @@ const HeaderMobile = () => {
           const isLastItem = idx === SIDENAV_ITEMS.length - 1; // Check if it's the last item
 
           return (
-            <div key={idx}>
+            <React.Fragment key={item.title}>
               {item.submenu ? (
-                <MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
+                <MenuItemWithSubMenu item={item} toggleOpen={handleToggle} />
               ) : (
                 <MenuItem>
                   <Link
                     href={item.path}
-                    onClick={() => toggleOpen()}
+                    onClick={handleToggle}
                     className={`flex w-full text-2xl ${
                       item.path === pathname ? "font-bold" : ""
                     }`}
@@ -82,18 +83,18 @@ const HeaderMobile = () => {
               {!isLastItem && (
                 <MenuItem className="my-3 h-px w-full bg-gray-300" />
               )}
-            </div>
+            </React.Fragment>
           );
         })}
       </motion.ul>
-      <MenuToggle toggle={toggleOpen} />
+      <MenuToggle toggle={handleToggle} />
     </motion.nav>
   );
 };
 
 export default HeaderMobile;
 
-const MenuToggle = ({ toggle }: { toggle: any }) => (
+const MenuToggle: React.FC<{ toggle: () => void }> = ({ toggle }) => (
   <button
     onClick={toggle}
     className="pointer-events-auto absolute right-4 top-[14px] z-30"
@@ -123,7 +124,7 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
   </button>
 );
 
-const Path = (props: any) => (
+const Path: React.FC<React.ComponentProps<typeof motion.path>> = (props) => (
   <motion.path
     fill="transparent"
     strokeWidth="2"
@@ -133,12 +134,13 @@ const Path = (props: any) => (
   />
 );
 
+// Replace the any type with a more specific type
 const MenuItem = ({
   className,
   children,
 }: {
   className?: string;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }) => {
   return (
     <motion.li variants={MenuItemVariants} className={className}>
@@ -154,13 +156,14 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
   const pathname = usePathname();
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
+  const handleSubMenuToggle = useCallback(() => {
+    setSubMenuOpen((prev) => !prev);
+  }, []);
+
   return (
     <>
       <MenuItem>
-        <button
-          className="flex w-full text-2xl"
-          onClick={() => setSubMenuOpen(!subMenuOpen)}
-        >
+        <button className="flex w-full text-2xl" onClick={handleSubMenuToggle}>
           <div className="flex flex-row justify-between w-full items-center">
             <span
               className={`${pathname.includes(item.path) ? "font-bold" : ""}`}
@@ -181,7 +184,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
                 <MenuItem key={subIdx}>
                   <Link
                     href={subItem.path}
-                    onClick={() => toggleOpen()}
+                    onClick={toggleOpen}
                     className={` ${
                       subItem.path === pathname ? "font-bold" : ""
                     }`}
@@ -198,7 +201,24 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
   );
 };
 
-const MenuItemVariants = {
+// Replace the any type with a more specific type
+const MenuItemVariants: {
+  open: {
+    y: number;
+    opacity: number;
+    transition: {
+      y: { stiffness: number; velocity: number };
+    };
+  };
+  closed: {
+    y: number;
+    opacity: number;
+    transition: {
+      y: { stiffness: number };
+      duration: number;
+    };
+  };
+} = {
   open: {
     y: 0,
     opacity: 1,
@@ -216,7 +236,15 @@ const MenuItemVariants = {
   },
 };
 
-const variants = {
+// Replace the any type with a more specific type
+const variants: {
+  open: {
+    transition: { staggerChildren: number; delayChildren: number };
+  };
+  closed: {
+    transition: { staggerChildren: number; staggerDirection: number };
+  };
+} = {
   open: {
     transition: { staggerChildren: 0.02, delayChildren: 0.15 },
   },
@@ -225,7 +253,7 @@ const variants = {
   },
 };
 
-const useDimensions = (ref: any) => {
+const useDimensions = (ref: React.RefObject<HTMLElement>) => {
   const dimensions = useRef({ width: 0, height: 0 });
 
   useEffect(() => {
