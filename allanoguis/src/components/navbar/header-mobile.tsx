@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback } from "react";
-import { SIDENAV_ITEMS } from "../components/constants";
-import { SideNavItem } from "../components/types";
+import { SIDENAV_ITEMS } from "./constants";
+import { SideNavItem } from "./types";
 import { Icon } from "@iconify/react";
 import { motion, useCycle } from "framer-motion";
 

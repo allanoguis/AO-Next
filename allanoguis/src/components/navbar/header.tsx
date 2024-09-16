@@ -5,8 +5,8 @@ import React from "react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 
-import useScroll from "../hooks/use-scroll";
-import { cn } from "../lib/utils";
+import useScroll from "../../hooks/use-scroll";
+import { cn } from "../../lib/utils";
 
 const Header = () => {
   const scrolled = useScroll(5);
@@ -28,8 +28,8 @@ const Header = () => {
             href="/"
             className="flex flex-row space-x-3 items-center justify-center md:hidden"
           >
-            <span className="h-7 w-7 bg-zinc-300 rounded-lg" />8
-            <span className="font-bold text-xl flex ">Logo</span>
+            <span className="h-7 w-7 bg-zinc-300 rounded-lg" />
+            <span className="font-bold text-xl flex ">shit</span>
           </Link>
         </div>
 

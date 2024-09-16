@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 
-import { SideNavItem } from "../components/types";
+import { SideNavItem } from "./types";
 
 export const SIDENAV_ITEMS: SideNavItem[] = [
   {
