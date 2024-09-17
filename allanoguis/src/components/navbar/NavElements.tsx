@@ -14,36 +14,53 @@ export interface SideNavItem {
   subMenuItems?: Omit<SideNavItem, "icon" | "submenu" | "subMenuItems">[];
 }
 
-const createNavItem = (
-  title: string,
-  path: string,
-  icon: JSX.Element,
-  subMenuItems?: SideNavItem["subMenuItems"]
-): SideNavItem => ({
-  title,
-  path,
-  icon,
-  ...(subMenuItems && { submenu: true, subMenuItems }),
-});
-
 export const SIDENAV_ITEMS: SideNavItem[] = [
-  createNavItem("Home", "/", <HomeIcon size={24} />),
-
-  createNavItem("Merlin", "/merlin", <HubotIcon size={24} />),
-  createNavItem("Projects", "/projects", <RocketIcon size={24} />, [
-    { title: "3D Design", path: "/projects/3d-design" },
-    { title: "Web Design", path: "/projects/web-design" },
-    { title: "Graphic Design", path: "/projects/graphic-design" },
-  ]),
-  createNavItem("Merch", "/merch", <CodeOfConductIcon size={24} />, [
-    { title: "Shirts", path: "/merch/shirts" },
-    { title: "Coffee", path: "/merch/coffee" },
-    { title: "Wellness", path: "/merch/wellness" },
-  ]),
+  {
+    title: "Home",
+    path: "/",
+    icon: <HomeIcon size={24} />,
+  },
+  {
+    title: "Stuff",
+    path: "/stuff",
+    icon: <HubotIcon size={24} />,
+  },
+  {
+    title: "Projects",
+    path: "/projects",
+    icon: <RocketIcon size={24} />,
+    submenu: true,
+    subMenuItems: [
+      { title: "Game of Life", path: "/projects/game-of-life" },
+      { title: "Web Design", path: "/projects/web-design" },
+      { title: "Graphic Design", path: "/projects/graphic-design" },
+    ],
+  },
+  {
+    title: "Merch",
+    path: "/merch",
+    icon: <CodeOfConductIcon size={24} />,
+    submenu: true,
+    subMenuItems: [
+      // { title: "Shirts", path: "/merch/shirts" },
+      // { title: "Coffee", path: "/merch/coffee" },
+      // { title: "Wellness", path: "/merch/wellness" },
+    ],
+  },
+  {
+    title: "About",
+    path: "../../app/about",
+    icon: <DependabotIcon size={24} />,
+  },
   // Uncomment and update the About section if needed
-  createNavItem("About", "/about", <DependabotIcon size={24} />),
-  // , [
-  //   { title: "GitHub", path: "https://github.com/allanoguis" },
-  //   { title: "Behance", path: "https://www.behance.net/theallanoguis" },
-  // ]),
+  // {
+  //   title: "About",
+  //   path: "/about",
+  //   icon: <DependabotIcon size={24} />,
+  //   submenu: true,
+  //   subMenuItems: [
+  //     { title: "GitHub", path: "https://github.com/allanoguis" },
+  //     { title: "Behance", path: "https://www.behance.net/theallanoguis" },
+  //   ],
+  // },
 ];

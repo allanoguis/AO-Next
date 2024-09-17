@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
-import { Icon } from "@iconify/react";
+import { TriangleDownIcon } from "@primer/octicons-react";
 
 const SideNav = () => {
   return (
@@ -54,7 +54,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
             </div>
 
             <div className={`${subMenuOpen ? "rotate-180" : ""} flex`}>
-              <Icon icon="lucide:chevron-down" width="24" height="24" />
+              <TriangleDownIcon size={24} />
             </div>
           </button>
 
