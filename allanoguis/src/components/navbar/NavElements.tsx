@@ -22,7 +22,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: "Stuff",
-    path: "/stuff",
+    path: "/pages/stuff",
     icon: <HubotIcon size={24} />,
   },
   {
@@ -31,9 +31,10 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     icon: <RocketIcon size={24} />,
     submenu: true,
     subMenuItems: [
-      { title: "Game of Life", path: "/projects/game-of-life" },
-      { title: "Web Design", path: "/projects/web-design" },
-      { title: "Graphic Design", path: "/projects/graphic-design" },
+      { title: "Game of Life", path: "/pages/projects/conway" },
+      { title: "Tic Tac Toe", path: "/projects/tictactoe" },
+      { title: "Battle Ship", path: "/projects/battleship" },
+      { title: "Anonymous Messaging", path: "/projects/anonymous" },
     ],
   },
   {
@@ -49,7 +50,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: "About",
-    path: "../../app/about",
+    path: "/pages/about",
     icon: <DependabotIcon size={24} />,
   },
   // Uncomment and update the About section if needed

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useCallback, useRef } from "react";
 import styles from "./conway.module.css";
 
@@ -76,6 +77,7 @@ const GameOfLife: React.FC = () => {
             }
           }}
           className={running ? "stop" : "start"}
+          id="button"
         >
           {running ? "Stop" : "Start"}
         </button>

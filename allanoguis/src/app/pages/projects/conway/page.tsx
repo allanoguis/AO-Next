@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Fragment } from "react";
 import GameOfLife from "@/projects/conway/Conway";
