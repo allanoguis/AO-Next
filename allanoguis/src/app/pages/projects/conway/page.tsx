@@ -1,6 +1,6 @@
 import React from "react";
 import { Fragment } from "react";
-import GameOfLife from "@/projects/conway/Conway";
+import GameOfLife from "@/projects/conway/conwayres";
 
 const ConwayPage = () => {
   return (
