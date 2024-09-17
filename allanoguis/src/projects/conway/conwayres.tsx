@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-const CELL_SIZE = 5;
-const WIDTH = 500;
-const HEIGHT = 500;
+import styles from "./conway.module.css";
 
 interface Cell {
   alive: boolean;
@@ -13,42 +11,51 @@ interface Grid {
 }
 
 interface GameOfLifeProps {
+  cellsize: number;
+  width: number;
+  height: number;
   // You can add props here if needed
 }
 
 const GameOfLife: React.FC<GameOfLifeProps> = () => {
+  const [cellSize, setCellSize] = useState(5);
+  const [width, setWidth] = useState(300);
+  const [height, setHeight] = useState(600);
   const [grid, setGrid] = useState<Grid>({ cells: [] });
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
-    for (let i = 0; i < HEIGHT / CELL_SIZE; i++) {
+    for (let i = 0; i < height / cellSize; i++) {
       newCells[i] = [];
-      for (let j = 0; j < WIDTH / CELL_SIZE; j++) {
+      for (let j = 0; j < width / cellSize; j++) {
         newCells[i][j] = { alive: Math.random() > 0.7 };
       }
     }
     setGrid({ cells: newCells });
-  }, []);
+  }, [cellSize, width, height]);
 
-  const drawGrid = useCallback((currentGrid: Grid) => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        ctx.clearRect(0, 0, WIDTH, HEIGHT);
-        currentGrid.cells.forEach((row, i) => {
-          row.forEach((cell, j) => {
-            if (cell.alive) {
-              ctx.fillStyle = "black";
-              ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-            }
+  const drawGrid = useCallback(
+    (currentGrid: Grid) => {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.clearRect(0, 0, width, height);
+          currentGrid.cells.forEach((row, i) => {
+            row.forEach((cell, j) => {
+              if (cell.alive) {
+                ctx.fillStyle = "black";
+                ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+              }
+            });
           });
-        });
+        }
       }
-    }
-  }, []);
+    },
+    [cellSize, width, height]
+  );
 
   const countNeighbors = useCallback(
     (grid: Grid, row: number, col: number): number => {
@@ -90,7 +97,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
 
   useEffect(() => {
     initializeGrid();
-  }, [initializeGrid]);
+  }, [initializeGrid, cellSize, width, height]);
 
   useEffect(() => {
     drawGrid(grid);
@@ -104,16 +111,66 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     return () => clearInterval(intervalId);
   }, [isRunning, updateGrid]);
 
+  const handleInputChange = (
+    setter: React.Dispatch<React.SetStateAction<number>>,
+    value: number,
+    minValue: number
+  ) => {
+    if (value >= minValue) {
+      setter(value);
+    }
+  };
+
   return (
-    <div>
-      <canvas ref={canvasRef} width={WIDTH} height={HEIGHT} />
-      <div>
-        <button onClick={() => setIsRunning(!isRunning)}>
-          {isRunning ? "Stop" : "Start"}
-        </button>
-        <button onClick={initializeGrid}>Reset</button>
+    <>
+      <div className={styles.grid}>
+        <div>
+          <div className={styles.inputs}>
+            <p>Cell Size:</p>
+            <input
+              type="number"
+              value={cellSize}
+              onChange={(e) =>
+                handleInputChange(setCellSize, Number(e.target.value), 1)
+              }
+              min="1"
+            />
+            <p>Input resolution (width):</p>
+            <input
+              type="number"
+              value={width}
+              onChange={(e) =>
+                handleInputChange(setWidth, Number(e.target.value), 1)
+              }
+              min="100"
+            />
+            <p>Input resolution (height):</p>
+            <input
+              type="number"
+              value={height}
+              onChange={(e) =>
+                handleInputChange(setHeight, Number(e.target.value), 1)
+              }
+              min="100"
+            />
+          </div>
+          <div className="buttons">
+            <button
+              className={styles.start}
+              onClick={() => setIsRunning(!isRunning)}
+            >
+              {isRunning ? "Stop" : "Start"}
+            </button>
+            <button className={styles.reset} onClick={initializeGrid}>
+              Reset
+            </button>
+          </div>
+        </div>
+        <div>
+          <canvas ref={canvasRef} width={width} height={height} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
