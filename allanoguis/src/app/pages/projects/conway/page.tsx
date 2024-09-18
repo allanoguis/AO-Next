@@ -6,7 +6,7 @@ const ConwayPage = () => {
     <>
       <h1 className="text-center">Game of Life 2.0</h1>
 
-      <GameOfLife cellsize={5} width={300} height={600} />
+      <GameOfLife />
     </>
   );
 };

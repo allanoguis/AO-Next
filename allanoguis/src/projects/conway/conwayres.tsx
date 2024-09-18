@@ -20,7 +20,7 @@ interface GameOfLifeProps {
 const GameOfLife: React.FC<GameOfLifeProps> = () => {
   const [cellSize, setCellSize] = useState(5);
   const [width, setWidth] = useState(300);
-  const [height, setHeight] = useState(600);
+  const [height, setHeight] = useState(400);
   const [grid, setGrid] = useState<Grid>({ cells: [] });
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
