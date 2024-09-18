@@ -13,6 +13,7 @@
     animation: rotate 2s linear infinite;
 }
 
+/* Define the keyframes for the rotation */
 @keyframes rotate {
     from {
         transform: rotate(0deg);

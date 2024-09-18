@@ -3,7 +3,6 @@ import {
   HubotIcon,
   CodeOfConductIcon,
   DependabotIcon,
-  WebhookIcon,
 } from "@primer/octicons-react";
 
 export interface SideNavItem {
@@ -15,11 +14,11 @@ export interface SideNavItem {
 }
 
 export const SIDENAV_ITEMS: SideNavItem[] = [
-  {
-    title: "Home",
-    path: "/",
-    icon: <WebhookIcon size={24} />,
-  },
+  // {
+  //   title: "Home",
+  //   path: "/",
+  //   icon: ,
+  // },
   {
     title: "Stuff",
     path: "/pages/stuff",
@@ -38,14 +37,20 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     ],
   },
   {
-    title: "Merch",
+    title: "Bored?",
     path: "/merch",
     icon: <CodeOfConductIcon size={24} />,
     submenu: true,
     subMenuItems: [
-      // { title: "Shirts", path: "/merch/shirts" },
-      // { title: "Coffee", path: "/merch/coffee" },
-      // { title: "Wellness", path: "/merch/wellness" },
+      {
+        title: "Join the Discord Server",
+        path: "https://discord.gg/8efXHN6E",
+      },
+      {
+        title: "Add me on Steam",
+        path: "https://steamcommunity.com/id/madtoken2/",
+      },
+      { title: "Learn Hacking 101", path: "https://overthewire.org/" },
     ],
   },
   {

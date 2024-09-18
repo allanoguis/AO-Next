@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "../../hooks/use-scroll";
 import { cn } from "../../lib/utils";
+import { WebhookIcon } from "@primer/octicons-react";
+
+// THIS IS THE MOBILE HEADER refactor gotta refactor the whole code. too much coffee
 
 const HeaderMain = () => {
   const scrolled = useScroll(5);
@@ -25,10 +28,10 @@ const HeaderMain = () => {
             href="/"
             className="flex flex-row space-x-3 items-center justify-center md:hidden"
           >
-            <span className="h-9 w-9 text-center text-3xl bg-zinc-300 rounded-lg">
-              8
+            <span className="animate-spin">
+              <WebhookIcon size={24} />
             </span>
-            <span className="font-bold text-xl flex ">shit</span>
+            <span className="font-bold text-xl flex ">Home</span>
           </Link>
         </div>
 

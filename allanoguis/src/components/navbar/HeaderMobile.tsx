@@ -13,7 +13,7 @@ type MenuItemWithSubMenuProps = {
   toggleOpen: () => void;
 };
 
-const sidebar = {
+const mobileMenu = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 100% 0)`,
     transition: {
@@ -52,7 +52,7 @@ const HeaderMobile = () => {
     >
       <motion.div
         className="absolute inset-0 right-0 w-full bg-white"
-        variants={sidebar}
+        variants={mobileMenu}
       />
       <motion.ul
         variants={variants}

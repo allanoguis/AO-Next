@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
 import { AiModelIcon } from "@primer/octicons-react";
+import { WebhookIcon } from "@primer/octicons-react";
 import styles from "./nav.module.css";
 
 // SideNav Component
@@ -18,10 +19,12 @@ const SideNav = () => {
 
         <Link
           href="/"
-          className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full"
+          className="group flex flex-row space-x-3 items-center justify-center md:justify-start md:px-8 border-b border-zinc-200 h-12 w-full"
         >
-          <span className="h-7 w-7 bg-zinc-300 rounded-lg" />
-          <span className="font-semibold text-xl hidden md:flex">Logo</span>
+          <span className="group-hover:animate-spin">
+            <WebhookIcon size={24} />
+          </span>
+          <span className="font-semibold text-xl hidden md:flex">Home</span>
         </Link>
 
         {/* Menu items */}
@@ -49,36 +52,46 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
     <div className={styles.spacefont}>
       {item.submenu ? (
         <>
+          {/* Menu Iten with Dropdown */}
           <button
             onClick={toggleSubMenu}
-            className={`flex flex-row items-center p-2 rounded-lg hover-bg-zinc-100 w-full justify-between hover:bg-zinc-100 ${
+            className={`group flex flex-row items-center p-2 rounded-md w-full justify-between hover:bg-zinc-100 ${
               pathname.includes(item.path) ? "bg-zinc-100" : ""
-            }`}
+            } ${styles.hover}`}
           >
             <div className="flex flex-row space-x-4 items-center">
-              {item.icon}
-              <span className="font-medium text-2xl flex">{item.title}</span>
+              <span className="group-hover:animate-bounce ">{item.icon}</span>
+
+              <span className="font-medium text-xl flex">{item.title}</span>
             </div>
 
-            <div className={`${subMenuOpen ? "rotate-180" : ""} flex`}>
+            {/* Menu item dropdown icon */}
+
+            <div
+              className={`${
+                subMenuOpen ? `duration-200 ease-in ${styles.rotate}` : ""
+              } flex`}
+            >
               <AiModelIcon size={16} />
             </div>
           </button>
 
+          {/* Submenu item */}
+
           {subMenuOpen && (
-            <div className="my-2 ml-12 flex flex-col space-y-4">
+            <div className="my-2 text-center flex flex-col space-y-4">
               {item.subMenuItems?.map((subItem, idx) => {
                 return (
                   <Link
                     key={idx}
                     href={subItem.path}
                     className={`${
+                      // Submenu link is active => font-weight: semibold
+
                       subItem.path === pathname ? "font-semibold" : ""
                     }`}
                   >
-                    <span className={`{${styles.spacefont}`}>
-                      {subItem.title}
-                    </span>
+                    <span>{subItem.title}</span>
                   </Link>
                 );
               })}
@@ -86,16 +99,16 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           )}
         </>
       ) : (
+        // if submenu link is not active => should enable on hover effects
+
         <Link
           href={item.path}
-          className={`flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
+          className={`group flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
             item.path === pathname ? "bg-zinc-100" : ""
           }`}
         >
-          {item.icon}
-
-          {/* Regular Menu items */}
-
+          {/* Menu items without Submenu */}
+          <span className="group-hover:animate-bounce">{item.icon}</span>
           <span className="font-medium text-xl flex">{item.title}</span>
         </Link>
       )}
