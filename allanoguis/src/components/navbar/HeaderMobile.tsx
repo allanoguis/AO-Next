@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback } from "react";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
-import { TriangleDownIcon } from "@primer/octicons-react";
+import { AiModelIcon } from "@primer/octicons-react";
 import { motion, useCycle } from "framer-motion";
 
 type MenuItemWithSubMenuProps = {
@@ -172,7 +172,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
               {item.title}
             </span>
             <div className={`${subMenuOpen && "rotate-180"}`}>
-              <TriangleDownIcon size={24} />
+              <AiModelIcon size={24} />
             </div>
           </div>
         </button>
