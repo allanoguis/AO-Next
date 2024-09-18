@@ -23,9 +23,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
   const [height, setHeight] = useState(600);
   const [grid, setGrid] = useState<Grid>({ cells: [] });
   const [isRunning, setIsRunning] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
@@ -123,32 +121,8 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     }
   };
 
-  const toggleFullScreen = () => {
-    if (!document.fullscreenElement) {
-      containerRef.current?.requestFullscreen();
-      setIsFullScreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullScreen(false);
-    }
-  };
-
-  useEffect(() => {
-    const handleFullScreenChange = () => {
-      setIsFullScreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener("fullscreenchange", handleFullScreenChange);
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullScreenChange);
-    };
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className={`${styles.container} ${isFullScreen ? styles.fullscreen : ""}`}
-    >
+    <>
       <div className={styles.grid}>
         <div>
           <div className={styles.inputs}>
@@ -166,20 +140,18 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
               type="number"
               value={width}
               onChange={(e) =>
-                handleInputChange(setWidth, Number(e.target.value), 1)
+                handleInputChange(setWidth, Number(e.target.value), 10)
               }
               min="100"
-              max="9000"
             />
             <p>Input resolution (height):</p>
             <input
               type="number"
               value={height}
               onChange={(e) =>
-                handleInputChange(setHeight, Number(e.target.value), 1)
+                handleInputChange(setHeight, Number(e.target.value), 10)
               }
               min="100"
-              max="9000"
             />
           </div>
           <div className={styles.buttons}>
@@ -192,16 +164,13 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
             <button className={styles.reset} onClick={initializeGrid}>
               Reset
             </button>
-            <button className={styles.fullscreen} onClick={toggleFullScreen}>
-              {isFullScreen ? "Exit Fullscreen" : "Fullscreen"}
-            </button>
           </div>
         </div>
         <div className={styles.gridwrapper}>
           <canvas ref={canvasRef} width={width} height={height} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
