@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Space';
+    src: url('../../app/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.spacefont {
+    font-family: 'Space', sans-serif;
+}

@@ -1,12 +1,11 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback } from "react";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
-import { TriangleDownIcon, WebhookIcon } from "@primer/octicons-react";
+import { TriangleDownIcon } from "@primer/octicons-react";
 import { motion, useCycle } from "framer-motion";
 
 type MenuItemWithSubMenuProps = {

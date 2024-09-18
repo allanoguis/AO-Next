@@ -1,22 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import SideNav from "../components/navbar/SideNav";
 import Header from "../components/navbar/HeaderMain";
 import HeaderMobile from "../components/navbar/HeaderMobile";
 import WrapperPage from "../components/navbar/WrapperPage";
 import WrapperMain from "../components/navbar/WrapperMain";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "shitstack",
@@ -30,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
-      >
+      <body>
         <div className="flex">
           <SideNav />
           <main className="flex-1">

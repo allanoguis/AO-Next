@@ -1,25 +1,32 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
-import { TriangleDownIcon } from "@primer/octicons-react";
+import { AiModelIcon } from "@primer/octicons-react";
+import styles from "./nav.module.css";
 
+// SideNav Component
 const SideNav = () => {
   return (
-    <div className="md:w-60 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex">
+    <div
+      className={`${styles.spacefont} md:w-60 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex`}
+    >
       <div className="flex flex-col space-y-6 w-full">
+        {/* Logo section */}
+
         <Link
           href="/"
           className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full"
         >
           <span className="h-7 w-7 bg-zinc-300 rounded-lg" />
-          <span className="font-bold text-xl hidden md:flex">Logo</span>
+          <span className="font-semibold text-xl hidden md:flex">Logo</span>
         </Link>
 
-        <div className="flex flex-col space-y-2  md:px-6 ">
+        {/* Menu items */}
+
+        <div className=" flex flex-col space-y-2 md:px-6 ">
           {SIDENAV_ITEMS.map((item, idx) => {
             return <MenuItem key={idx} item={item} />;
           })}
@@ -39,7 +46,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
   };
 
   return (
-    <div className="">
+    <div className={styles.spacefont}>
       {item.submenu ? (
         <>
           <button
@@ -50,11 +57,11 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           >
             <div className="flex flex-row space-x-4 items-center">
               {item.icon}
-              <span className="font-semibold text-xl  flex">{item.title}</span>
+              <span className="font-medium text-2xl flex">{item.title}</span>
             </div>
 
             <div className={`${subMenuOpen ? "rotate-180" : ""} flex`}>
-              <TriangleDownIcon size={24} />
+              <AiModelIcon size={16} />
             </div>
           </button>
 
@@ -66,10 +73,12 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                     key={idx}
                     href={subItem.path}
                     className={`${
-                      subItem.path === pathname ? "font-bold" : ""
+                      subItem.path === pathname ? "font-semibold" : ""
                     }`}
                   >
-                    <span>{subItem.title}</span>
+                    <span className={`{${styles.spacefont}`}>
+                      {subItem.title}
+                    </span>
                   </Link>
                 );
               })}
@@ -84,7 +93,10 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           }`}
         >
           {item.icon}
-          <span className="font-semibold text-xl flex">{item.title}</span>
+
+          {/* Regular Menu items */}
+
+          <span className="font-medium text-xl flex">{item.title}</span>
         </Link>
       )}
     </div>
