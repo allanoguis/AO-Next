@@ -6,6 +6,10 @@
     padding-top: 1%;
 }
 
+.gridwrapper {
+    border: 5px solid white;
+}
+
 .inputs {
     display: grid;
     justify-content: center;
@@ -18,5 +22,29 @@
 .buttons {
     display: grid;
     justify-content: center;
-    padding: 5px;
+    padding: 15px;
+}
+
+.buttons>* {
+    padding: 10px 20px;
+    border: 5px solid white;
+    border-radius: 8px;
+}
+
+.start {
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.start:hover {
+    border-color: tomato;
+}
+
+.reset {
+    padding: 10px 20px;
+    margin: 5px;
+}
+
+.reset:hover {
+    border-color: tomato;
 }

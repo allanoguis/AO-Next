@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCallback } from "react";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
-import { TriangleDownIcon } from "@primer/octicons-react";
+import { TriangleDownIcon, WebhookIcon } from "@primer/octicons-react";
 import { motion, useCycle } from "framer-motion";
 
 type MenuItemWithSubMenuProps = {
@@ -94,6 +94,7 @@ const HeaderMobile = () => {
 
 export default HeaderMobile;
 
+//Mobile hamburger icon
 const MenuToggle: React.FC<{ toggle: () => void }> = ({ toggle }) => (
   <button
     onClick={toggle}
@@ -124,6 +125,7 @@ const MenuToggle: React.FC<{ toggle: () => void }> = ({ toggle }) => (
   </button>
 );
 
+// Mobile Menu bg animation
 const Path: React.FC<React.ComponentProps<typeof motion.path>> = (props) => (
   <motion.path
     fill="transparent"

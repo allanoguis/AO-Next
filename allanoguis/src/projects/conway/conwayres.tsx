@@ -140,7 +140,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
               type="number"
               value={width}
               onChange={(e) =>
-                handleInputChange(setWidth, Number(e.target.value), 1)
+                handleInputChange(setWidth, Number(e.target.value), 10)
               }
               min="100"
             />
@@ -149,12 +149,12 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
               type="number"
               value={height}
               onChange={(e) =>
-                handleInputChange(setHeight, Number(e.target.value), 1)
+                handleInputChange(setHeight, Number(e.target.value), 10)
               }
               min="100"
             />
           </div>
-          <div className="buttons">
+          <div className={styles.buttons}>
             <button
               className={styles.start}
               onClick={() => setIsRunning(!isRunning)}
@@ -166,7 +166,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
             </button>
           </div>
         </div>
-        <div>
+        <div className={styles.gridwrapper}>
           <canvas ref={canvasRef} width={width} height={height} />
         </div>
       </div>

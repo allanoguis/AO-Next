@@ -1,9 +1,9 @@
 import {
-  HomeIcon,
   RocketIcon,
   HubotIcon,
   CodeOfConductIcon,
   DependabotIcon,
+  WebhookIcon,
 } from "@primer/octicons-react";
 
 export interface SideNavItem {
@@ -18,7 +18,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   {
     title: "Home",
     path: "/",
-    icon: <HomeIcon size={24} />,
+    icon: <WebhookIcon size={24} />,
   },
   {
     title: "Stuff",
@@ -32,9 +32,9 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     submenu: true,
     subMenuItems: [
       { title: "Game of Life", path: "/pages/projects/conway" },
-      { title: "Tic Tac Toe", path: "/projects/tictactoe" },
-      { title: "Battle Ship", path: "/projects/battleship" },
-      { title: "Anonymous Messaging", path: "/projects/anonymous" },
+      { title: "Tic Tac Toe", path: "/pages/projects/tictactoe" },
+      { title: "Battle Ship", path: "/pages/projects/battleship" },
+      { title: "Anonymous Messaging", path: "/pages/projects/anonymous" },
     ],
   },
   {
