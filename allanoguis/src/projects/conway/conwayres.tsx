@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./conway.module.css";
+import debounce from "lodash/debounce";
 
 interface Cell {
   alive: boolean;
@@ -35,6 +36,13 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     }
     setGrid({ cells: newCells });
   }, [cellSize, width, height]);
+
+  const debouncedInitializeGrid = useCallback(
+    debounce(() => {
+      initializeGrid();
+    }, 300),
+    [initializeGrid]
+  );
 
   const drawGrid = useCallback(
     (currentGrid: Grid) => {
@@ -111,66 +119,68 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     return () => clearInterval(intervalId);
   }, [isRunning, updateGrid]);
 
-  const handleInputChange = (
-    setter: React.Dispatch<React.SetStateAction<number>>,
-    value: number,
-    minValue: number
-  ) => {
-    if (value >= minValue) {
-      setter(value);
-    }
-  };
+  const handleInputChange = useCallback(
+    (
+      setter: React.Dispatch<React.SetStateAction<number>>,
+      value: number,
+      minValue: number
+    ) => {
+      if (value >= minValue) {
+        setter(value);
+        debouncedInitializeGrid();
+      }
+    },
+    [debouncedInitializeGrid]
+  );
 
   return (
-    <>
-      <div className={styles.grid}>
-        <div>
-          <div className={styles.inputs}>
-            <p>Cell Size:</p>
-            <input
-              type="number"
-              value={cellSize}
-              onChange={(e) =>
-                handleInputChange(setCellSize, Number(e.target.value), 1)
-              }
-              min="1"
-            />
-            <p>Input resolution (width):</p>
-            <input
-              type="number"
-              value={width}
-              onChange={(e) =>
-                handleInputChange(setWidth, Number(e.target.value), 10)
-              }
-              min="100"
-            />
-            <p>Input resolution (height):</p>
-            <input
-              type="number"
-              value={height}
-              onChange={(e) =>
-                handleInputChange(setHeight, Number(e.target.value), 10)
-              }
-              min="100"
-            />
-          </div>
-          <div className={styles.buttons}>
-            <button
-              className={styles.start}
-              onClick={() => setIsRunning(!isRunning)}
-            >
-              {isRunning ? "Stop" : "Start"}
-            </button>
-            <button className={styles.reset} onClick={initializeGrid}>
-              Reset
-            </button>
-          </div>
+    <div className={styles.grid}>
+      <div>
+        <div className={styles.inputs}>
+          <p>Cell Size:</p>
+          <input
+            type="number"
+            value={cellSize}
+            onChange={(e) =>
+              handleInputChange(setCellSize, Number(e.target.value), 1)
+            }
+            min="1"
+          />
+          <p>Input resolution (width):</p>
+          <input
+            type="number"
+            value={width}
+            onChange={(e) =>
+              handleInputChange(setWidth, Number(e.target.value), 1)
+            }
+            min="1"
+          />
+          <p>Input resolution (height):</p>
+          <input
+            type="number"
+            value={height}
+            onChange={(e) =>
+              handleInputChange(setHeight, Number(e.target.value), 1)
+            }
+            min="1"
+          />
         </div>
-        <div className={styles.gridwrapper}>
-          <canvas ref={canvasRef} width={width} height={height} />
+        <div className={styles.buttons}>
+          <button className={styles.reset} onClick={initializeGrid}>
+            Set / Reset
+          </button>
+          <button
+            className={styles.start}
+            onClick={() => setIsRunning(!isRunning)}
+          >
+            {isRunning ? "Stop" : "Start"}
+          </button>
         </div>
       </div>
-    </>
+      <div className={styles.gridwrapper}>
+        <canvas ref={canvasRef} width={width} height={height} />
+      </div>
+    </div>
   );
 };
 

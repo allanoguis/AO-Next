@@ -29,7 +29,7 @@ const SideNav = () => {
 
         {/* Menu items */}
 
-        <div className=" flex flex-col space-y-2 md:px-6 ">
+        <div className="flex flex-col space-y-2 md:px-6 ">
           {SIDENAV_ITEMS.map((item, idx) => {
             return <MenuItem key={idx} item={item} />;
           })}
@@ -79,7 +79,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           {/* Submenu item */}
 
           {subMenuOpen && (
-            <div className="my-2 text-center flex flex-col space-y-4">
+            <div className="my-2 text-right flex flex-col space-y-4">
               {item.subMenuItems?.map((subItem, idx) => {
                 return (
                   <Link
@@ -91,7 +91,9 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                       subItem.path === pathname ? "font-semibold" : ""
                     }`}
                   >
-                    <span>{subItem.title}</span>
+                    <span className="block p-2 py-1 rounded-md w-full hover:bg-zinc-100">
+                      {subItem.title}
+                    </span>
                   </Link>
                 );
               })}
