@@ -8,11 +8,14 @@
 
 .gridwrapper {
     border: 5px solid white;
+    display: flex;
 }
 
 .inputs {
-    display: grid;
+    display: block;
     justify-content: center;
+    text-align: center;
+    gap: 1rem;
 }
 
 .inputs>* {
@@ -32,7 +35,6 @@
 }
 
 .start {
-    padding: 10px 20px;
     margin: 5px;
 }
 
@@ -41,23 +43,12 @@
 }
 
 .reset {
-    padding: 10px 20px;
+
     margin: 5px;
 }
 
 .reset:hover {
     border-color: tomato;
-}
-
-
-
-.fullscreenButton {
-    position: relative;
-
-    padding: 10px 20px;
-    border: 5px solid white;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
 .gridDisplay {

@@ -2,5 +2,5 @@
 import React from "react";
 
 export default function Home() {
-  return <div>hello worlksjdflkj</div>;
+  return <div className="h-dvh">hello worlksjdflkj</div>;
 }

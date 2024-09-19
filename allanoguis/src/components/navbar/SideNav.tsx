@@ -6,32 +6,38 @@ import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
 import { AiModelIcon } from "@primer/octicons-react";
 import { WebhookIcon } from "@primer/octicons-react";
-import styles from "./nav.module.css";
+import styles from "../../css/nav.module.css";
+import FullscreenMode from "../fullscreen/FullscreenMode";
 
 // SideNav Component
 const SideNav = () => {
   return (
+    //main sidebar
     <div
-      className={`${styles.spacefont} md:w-60 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex`}
+      className={`${styles.spacefont} md:w-60 bg-white h-screen flex-1 fixed backdrop-blur-lg hidden md:flex`}
     >
       <div className="flex flex-col space-y-6 w-full">
         {/* Logo section */}
 
-        <Link
+        {/* <Link
           href="/"
           className="group flex flex-row space-x-3 items-center justify-center md:justify-start md:px-8 border-b border-zinc-200 h-12 w-full"
-        >
-          <span className="group-hover:animate-spin">
+        > */}
+        <div className="group flex ml-8 mt-3">
+          <span className="group-hover:animate-spin mr-3">
             <WebhookIcon size={24} />
           </span>
-          <span className="font-semibold text-xl hidden md:flex">Home</span>
-        </Link>
+          <span className="font-semibold text-xl hidden md:flex">
+            <FullscreenMode />
+          </span>
+        </div>
+        {/* </Link> */}
 
         {/* Menu items */}
 
         <div className="flex flex-col space-y-2 md:px-6 ">
-          {SIDENAV_ITEMS.map((item, idx) => {
-            return <MenuItem key={idx} item={item} />;
+          {SIDENAV_ITEMS.map((item, keyIndex) => {
+            return <MenuItem key={keyIndex} item={item} />;
           })}
         </div>
       </div>
@@ -43,16 +49,16 @@ export default SideNav;
 
 const MenuItem = ({ item }: { item: SideNavItem }) => {
   const pathname = usePathname();
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const toggleSubMenu = () => {
-    setSubMenuOpen(!subMenuOpen);
+    setIsActive(!isActive);
   };
 
   return (
     <div className={styles.spacefont}>
       {item.submenu ? (
         <>
-          {/* Menu Iten with Dropdown */}
+          {/* Menu Item with Dropdown */}
           <button
             onClick={toggleSubMenu}
             className={`group flex flex-row items-center p-2 rounded-md w-full justify-between hover:bg-zinc-100 ${
@@ -69,7 +75,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
 
             <div
               className={`${
-                subMenuOpen ? `duration-200 ease-in ${styles.rotate}` : ""
+                isActive ? `duration-200 ease-in ${styles.rotate}` : ""
               } flex`}
             >
               <AiModelIcon size={16} />
@@ -78,20 +84,20 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
 
           {/* Submenu item */}
 
-          {subMenuOpen && (
+          {isActive && (
             <div className="my-2 text-right flex flex-col space-y-4">
-              {item.subMenuItems?.map((subItem, idx) => {
+              {item.subMenuItems?.map((subItem, keyIndex) => {
                 return (
                   <Link
-                    key={idx}
+                    key={keyIndex}
                     href={subItem.path}
                     className={`${
                       // Submenu link is active => font-weight: semibold
 
-                      subItem.path === pathname ? "font-semibold" : ""
+                      subItem.path === pathname ? "bg-zinc-100" : ""
                     }`}
                   >
-                    <span className="block p-2 py-1 rounded-md w-full hover:bg-zinc-100">
+                    <span className="block p-2 py-1 rounded-md w-full font-medium hover:bg-zinc-100">
                       {subItem.title}
                     </span>
                   </Link>

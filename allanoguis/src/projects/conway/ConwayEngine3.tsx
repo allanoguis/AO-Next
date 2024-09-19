@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import styles from "./conway.module.css";
+import styles from "@/css/conway.module.css";
 import debounce from "lodash/debounce";
 
 interface Cell {
@@ -139,7 +139,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
   return (
     <div className={styles.grid}>
       <div>
-        <div className={styles.inputs}>
+        <div className={styles.inputs} id="gridinput">
           <p>Cell Size:</p>
           <input
             type="number"
@@ -168,7 +168,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
             min="1"
           />
         </div>
-        <div className={styles.buttons}>
+        <div className={styles.buttons} id="gridbtn">
           <button className={styles.reset} onClick={initializeGrid}>
             Set / Reset
           </button>

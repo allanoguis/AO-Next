@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Spaceman';
+    src: url('../fonts/SpaceGrotesk-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fullscreenButton {
+    font-family: 'Spaceman', sans-serif;
+    padding: 0;
+    cursor: pointer;
+}
