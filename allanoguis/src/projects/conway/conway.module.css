@@ -49,6 +49,8 @@
     border-color: tomato;
 }
 
+
+
 .fullscreenButton {
     position: relative;
 
@@ -56,4 +58,24 @@
     border: 5px solid white;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.gridDisplay {
+    display: inline-block;
+    border: 1px solid #ccc;
+    margin-left: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 5px;
+    height: 5px;
+    border: 1px solid #eee;
+}
+
+.alive {
+    background-color: black;
 }

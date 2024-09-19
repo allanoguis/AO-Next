@@ -1,13 +1,18 @@
+"use client";
 import React from "react";
-import GameOfLife from "@/projects/conway/conwayres";
+import GameOfLife from "@/projects/conway/ConwayEngine3";
+import styles from "@/projects/conway/conway.module.css";
 
-const ConwayPage = () => {
+const ConwayPage: React.FC = () => {
   return (
-    <>
-      <h1 className="text-center">Game of Life 2.0</h1>
-
-      <GameOfLife cellsize={1} width={300} height={400} />
-    </>
+    <div className={styles.conwayPage}>
+      <GameOfLife
+        cellsize={5}
+        width={300}
+        height={600}
+        onGridUpdate={() => {}} // We're not using this for now
+      />
+    </div>
   );
 };
 
