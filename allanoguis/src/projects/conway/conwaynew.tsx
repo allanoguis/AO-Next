@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./conway.module.css";
 import debounce from "lodash/debounce";
+import FullscreenMode from "./FullscreenMode";
 
 interface Cell {
   alive: boolean;
@@ -12,13 +13,13 @@ interface Grid {
 }
 
 interface GameOfLifeProps {
+  //grid prop
   cellsize: number;
   width: number;
   height: number;
-  // You can add props here if needed
 }
 
-const GameOfLife: React.FC<GameOfLifeProps> = () => {
+export const GameOfLife: React.FC<GameOfLifeProps> = () => {
   const [cellSize, setCellSize] = useState(5);
   const [width, setWidth] = useState(300);
   const [height, setHeight] = useState(400);
@@ -26,6 +27,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  //onReset randomize generation of cells
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
     for (let i = 0; i < height / cellSize; i++) {
@@ -37,6 +39,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     setGrid({ cells: newCells });
   }, [cellSize, width, height]);
 
+  //debounce?
   const debouncedInitializeGrid = useCallback(
     debounce(() => {
       initializeGrid();
@@ -44,6 +47,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     [initializeGrid]
   );
 
+  //checking grid state
   const drawGrid = useCallback(
     (currentGrid: Grid) => {
       const canvas = canvasRef.current;
@@ -65,6 +69,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     [cellSize, width, height]
   );
 
+  //grid engine
   const countNeighbors = useCallback(
     (grid: Grid, row: number, col: number): number => {
       let count = 0;
@@ -88,6 +93,21 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     []
   );
 
+  //listeners from reset: when a user clicks, initialize
+
+  useEffect(() => {
+    drawGrid(grid);
+  }, [grid, drawGrid]);
+
+  // listener from start: set timeout if a user is interacting with the inputs, give the user time to set the grid, checks if the grid is running ? resume engine: !running
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+    if (isRunning) {
+      intervalId = setInterval(updateGrid, 100);
+    }
+    return () => clearInterval(intervalId);
+  }, [isRunning, updateGrid]);
+
   const updateGrid = useCallback(() => {
     setGrid((prevGrid) => {
       const newCells = prevGrid.cells.map((row, i) =>
@@ -103,83 +123,10 @@ const GameOfLife: React.FC<GameOfLifeProps> = () => {
     });
   }, [countNeighbors]);
 
-  useEffect(() => {
-    initializeGrid();
-  }, [initializeGrid, cellSize, width, height]);
-
-  useEffect(() => {
-    drawGrid(grid);
-  }, [grid, drawGrid]);
-
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-    if (isRunning) {
-      intervalId = setInterval(updateGrid, 100);
-    }
-    return () => clearInterval(intervalId);
-  }, [isRunning, updateGrid]);
-
-  const handleInputChange = useCallback(
-    (
-      setter: React.Dispatch<React.SetStateAction<number>>,
-      value: number,
-      minValue: number
-    ) => {
-      if (value >= minValue) {
-        setter(value);
-        debouncedInitializeGrid();
-      }
-    },
-    [debouncedInitializeGrid]
-  );
-
   return (
-    <div className={styles.grid}>
-      <div>
-        <div className={styles.inputs}>
-          <p>Cell Size:</p>
-          <input
-            type="number"
-            value={cellSize}
-            onChange={(e) =>
-              handleInputChange(setCellSize, Number(e.target.value), 1)
-            }
-            min="1"
-          />
-          <p>Input resolution (width):</p>
-          <input
-            type="number"
-            value={width}
-            onChange={(e) =>
-              handleInputChange(setWidth, Number(e.target.value), 1)
-            }
-            min="1"
-          />
-          <p>Input resolution (height):</p>
-          <input
-            type="number"
-            value={height}
-            onChange={(e) =>
-              handleInputChange(setHeight, Number(e.target.value), 1)
-            }
-            min="1"
-          />
-        </div>
-        <div className={styles.buttons}>
-          <button className={styles.reset} onClick={initializeGrid}>
-            Set / Reset
-          </button>
-          <button
-            className={styles.start}
-            onClick={() => setIsRunning(!isRunning)}
-          >
-            {isRunning ? "Stop" : "Start"}
-          </button>
-        </div>
-      </div>
-      <div className={styles.gridwrapper}>
-        <canvas ref={canvasRef} width={width} height={height} />
-      </div>
+    //grid
+    <div className={styles.gridwrapper}>
+      <canvas ref={canvasRef} width={width} height={height} />
     </div>
   );
 };
