@@ -38,12 +38,13 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
     setGrid({ cells: newCells });
   }, [cellSize, width, height]);
 
-  const debouncedInitializeGrid = useCallback(
-    debounce(() => {
+  const debouncedInitializeGrid = useCallback(() => {
+    const debouncedInit = debounce(() => {
       initializeGrid();
-    }, 300),
-    [initializeGrid]
-  );
+    }, 300);
+    debouncedInit();
+    return () => debouncedInit.cancel();
+  }, [initializeGrid]);
 
   const drawGrid = useCallback(
     (currentGrid: Grid) => {

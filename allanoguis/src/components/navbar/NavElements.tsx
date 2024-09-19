@@ -3,6 +3,7 @@ import {
   HubotIcon,
   CodeOfConductIcon,
   DependabotIcon,
+  CodespacesIcon,
 } from "@primer/octicons-react";
 
 export interface SideNavItem {
@@ -14,11 +15,11 @@ export interface SideNavItem {
 }
 
 export const SIDENAV_ITEMS: SideNavItem[] = [
-  // {
-  //   title: "Home",
-  //   path: "/",
-  //   icon: ,
-  // },
+  {
+    title: "Home",
+    path: "/",
+    icon: <CodespacesIcon size={24} />,
+  },
   {
     title: "Stuff",
     path: "/pages/stuff",
