@@ -5,36 +5,16 @@ import { usePathname } from "next/navigation";
 import { SIDENAV_ITEMS } from "./NavElements";
 import { SideNavItem } from "./NavElements";
 import { AiModelIcon } from "@primer/octicons-react";
-import { WebhookIcon } from "@primer/octicons-react";
 import styles from "../../css/nav.module.css";
-import FullscreenMode from "../fullscreen/FullscreenMode";
 
 // SideNav Component
 const SideNav = () => {
   return (
     //main sidebar
     <div
-      className={`${styles.spacefont} md:w-60 bg-white h-screen flex-1 fixed backdrop-blur-lg hidden md:flex`}
+      className={`${styles.spacefont} md:w-60 bg-white h-screen flex-1 fixed backdrop-blur-lg hidden md:flex z-10`}
     >
-      <div className="flex flex-col space-y-6 w-full">
-        {/* Logo section */}
-
-        {/* <Link
-          href="/"
-          className="group flex flex-row space-x-3 items-center justify-center md:justify-start md:px-8 border-b border-zinc-200 h-12 w-full"
-        > */}
-        <div className="group flex ml-8 mt-3">
-          <span className="group-hover:animate-spin mr-3">
-            <WebhookIcon size={24} />
-          </span>
-          <span className="font-semibold text-xl hidden md:flex">
-            <FullscreenMode />
-          </span>
-        </div>
-        {/* </Link> */}
-
-        {/* Menu items */}
-
+      <div className="flex flex-col space-y-6 pt-3 w-full">
         <div className="flex flex-col space-y-2 md:px-6 ">
           {SIDENAV_ITEMS.map((item, keyIndex) => {
             return <MenuItem key={keyIndex} item={item} />;

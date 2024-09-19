@@ -17,6 +17,7 @@ const HeaderMain = () => {
 
   return (
     <div
+      //STICKY BAR ON TOP!
       className={cn(
         `sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200`,
         {
@@ -25,22 +26,24 @@ const HeaderMain = () => {
         }
       )}
     >
-      <div className="group flex h-[47px] items-center justify-between px-4">
-        <div className="flex items-center space-x-4">
+      <div className="flex h-[47px] items-center justify-between ml-4 px-4">
+        {/* // MOBILE MODE!! RIGHT SIDE FULL SCREEN LOGO */}
+        <div className="group flex items-center space-x-4">
           <Link
             href="/"
-            className="flex flex-row space-x-3 items-center justify-center md:hidden"
+            className="flex flex-row space-x-4 items-center justify-center md:flex"
           >
-            <span className="group-hover:animate-ping">
+            <span className="group-hover:animate-spin">
               <WebhookIcon size={24} />
             </span>
             <FullscreenMode />
           </Link>
         </div>
 
-        <div className="group hidden md:grid [grid-template-areas:'stack'] pr-4">
+        {/* // DESKTOP MODE!!! LEFT SIDE LOGO -- don't be confused */}
+        <div className="flex-initial group hidden md:grid [grid-template-areas:'stack'] pr-4">
           <span className="[grid-area:stack] fixed top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-red-600 group-hover:animate-ping" />
-          <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-xl outline-1">
+          <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-xl invert outline-1">
             {brand}
           </span>
         </div>

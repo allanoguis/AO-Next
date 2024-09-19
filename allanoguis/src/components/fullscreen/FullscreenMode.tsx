@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "@/css/fullscreen.module.css";
+import { ZoomOutIcon, ZoomInIcon } from "@primer/octicons-react";
 
 const FullscreenMode: React.FC = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -31,12 +32,13 @@ const FullscreenMode: React.FC = () => {
 
   return (
     <div className={isFullScreen ? styles.fullscreen : ""}>
-      <p
-        className={`${styles.fullscreenButton} font-mono font-semibold`}
+      <div
+        className={`${styles.fullscreenButton} font-mono text-xl font-regular flex items-center`}
         onClick={toggleFullscreen}
       >
-        {isFullScreen ? "Fullscreen: on" : "Fullscreen: off"}
-      </p>
+        <span className="mr-2 items-center">fullscreen:</span>
+        {isFullScreen ? <ZoomOutIcon size={16} /> : <ZoomInIcon size={16} />}
+      </div>
     </div>
   );
 };
