@@ -1,7 +1,6 @@
-"use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "@/css/conway.module.css";
-import debounce from "lodash/debounce";
+import GameControls from "./GameControls";
 
 interface Cell {
   alive: boolean;
@@ -15,17 +14,18 @@ interface GameOfLifeProps {
   cellsize: number;
   width: number;
   height: number;
+  isRunning: boolean;
   onGridUpdate: (grid: Grid) => void;
 }
 
 const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
-  // Add onGridUpdate prop
-  const [cellSize, setCellSize] = useState(5);
-  const [width, setWidth] = useState(300);
+  const [cellSize, setCellSize] = useState(3);
+  const [width, setWidth] = useState(350);
   const [height, setHeight] = useState(400);
   const [grid, setGrid] = useState<Grid>({ cells: [] });
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [showInputs, setShowInputs] = useState(true); // Add state for input visibility
 
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
@@ -37,14 +37,6 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
     }
     setGrid({ cells: newCells });
   }, [cellSize, width, height]);
-
-  const debouncedInitializeGrid = useCallback(() => {
-    const debouncedInit = debounce(() => {
-      initializeGrid();
-    }, 300);
-    debouncedInit();
-    return () => debouncedInit.cancel();
-  }, [initializeGrid]);
 
   const drawGrid = useCallback(
     (currentGrid: Grid) => {
@@ -123,63 +115,22 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
     return () => clearInterval(intervalId);
   }, [isRunning, updateGrid]);
 
-  const handleInputChange = useCallback(
-    (
-      setter: React.Dispatch<React.SetStateAction<number>>,
-      value: number,
-      minValue: number
-    ) => {
-      if (value >= minValue) {
-        setter(value);
-        debouncedInitializeGrid();
-      }
-    },
-    [debouncedInitializeGrid]
-  );
-
   return (
     <div className={styles.grid}>
       <div>
-        <div className={styles.inputs} id="gridinput">
-          <p>Cell Size:</p>
-          <input
-            type="number"
-            value={cellSize}
-            onChange={(e) =>
-              handleInputChange(setCellSize, Number(e.target.value), 1)
-            }
-            min="1"
-          />
-          <p>Input resolution (width):</p>
-          <input
-            type="number"
-            value={width}
-            onChange={(e) =>
-              handleInputChange(setWidth, Number(e.target.value), 1)
-            }
-            min="1"
-          />
-          <p>Input resolution (height):</p>
-          <input
-            type="number"
-            value={height}
-            onChange={(e) =>
-              handleInputChange(setHeight, Number(e.target.value), 1)
-            }
-            min="1"
-          />
-        </div>
-        <div className={styles.buttons} id="gridbtn">
-          <button className={styles.reset} onClick={initializeGrid}>
-            Set / Reset
-          </button>
-          <button
-            className={styles.start}
-            onClick={() => setIsRunning(!isRunning)}
-          >
-            {isRunning ? "Stop" : "Start"}
-          </button>
-        </div>
+        <GameControls
+          cellSize={cellSize}
+          setCellSize={setCellSize}
+          width={width}
+          setWidth={setWidth}
+          height={height}
+          setHeight={setHeight}
+          initializeGrid={initializeGrid}
+          isRunning={isRunning}
+          setIsRunning={setIsRunning}
+          showInputs={showInputs} // Pass visibility state
+          setShowInputs={setShowInputs} // Pass setter for visibility
+        />
       </div>
       <div className={styles.gridwrapper}>
         <canvas ref={canvasRef} width={width} height={height} />

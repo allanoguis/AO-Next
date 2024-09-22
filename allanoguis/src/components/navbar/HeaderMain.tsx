@@ -43,7 +43,7 @@ const HeaderMain = () => {
         {/* // DESKTOP MODE!!! LEFT SIDE LOGO -- don't be confused */}
         <div className="flex-initial group hidden md:grid [grid-template-areas:'stack'] pr-4">
           <span className="[grid-area:stack] fixed top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-red-600 group-hover:animate-ping" />
-          <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-xl invert outline-1">
+          <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-xl outline-1">
             {brand}
           </span>
         </div>

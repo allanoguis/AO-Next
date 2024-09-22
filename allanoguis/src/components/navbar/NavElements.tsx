@@ -34,7 +34,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
       { title: "Game of Life", path: "/pages/projects/conway" },
       { title: "Tic Tac Toe", path: "/pages/projects/tictactoe" },
       { title: "Battle Ship", path: "/pages/projects/battleship" },
-      { title: "Anonymous Messaging", path: "/pages/projects/anonymous" },
+      { title: "Anonymous Chat", path: "/pages/projects/anonymous" },
     ],
   },
   {
@@ -44,7 +44,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     submenu: true,
     subMenuItems: [
       {
-        title: "Join the Discord Server",
+        title: "Join our Discord",
         path: "https://discord.gg/8efXHN6E",
       },
       {
@@ -56,18 +56,12 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
   },
   {
     title: "About",
-    path: "/pages/about",
+    path: "/about",
     icon: <DependabotIcon size={24} />,
+    submenu: true,
+    subMenuItems: [
+      { title: "GitHub", path: "https://github.com/allanoguis" },
+      { title: "Behance", path: "https://www.behance.net/theallanoguis" },
+    ],
   },
-  // Uncomment and update the About section if needed
-  // {
-  //   title: "About",
-  //   path: "/about",
-  //   icon: <DependabotIcon size={24} />,
-  //   submenu: true,
-  //   subMenuItems: [
-  //     { title: "GitHub", path: "https://github.com/allanoguis" },
-  //     { title: "Behance", path: "https://www.behance.net/theallanoguis" },
-  //   ],
-  // },
 ];

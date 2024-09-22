@@ -23,33 +23,54 @@
 }
 
 .buttons {
-    display: grid;
+    display: flex;
     justify-content: center;
-    padding: 15px;
 }
 
-.buttons>* {
+.togglebtn {
+    margin: 5px;
     padding: 10px 20px;
     border: 5px solid white;
     border-radius: 8px;
 }
 
+.togglebtn:hover {
+    border-color: tomato;
+}
+
+.defaultbtn {
+    margin: 5px;
+    padding: 10px 20px;
+    border: 5px solid white;
+    border-radius: 8px;
+}
+
+.defaultbtn:hover {
+    border-color: tomato;
+}
+
 .start {
     margin: 5px;
+    padding: 10px 20px;
+    border: 5px solid white;
+    border-radius: 8px;
 }
 
 .start:hover {
     border-color: tomato;
 }
 
-.reset {
-
+.randomizebtn {
     margin: 5px;
+    padding: 10px 20px;
+    border: 5px solid white;
+    border-radius: 8px;
 }
 
-.reset:hover {
+.randomizebtn:hover {
     border-color: tomato;
 }
+
 
 .gridDisplay {
     display: inline-block;
@@ -65,8 +86,4 @@
     width: 5px;
     height: 5px;
     border: 1px solid #eee;
-}
-
-.alive {
-    background-color: black;
 }
