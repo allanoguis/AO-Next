@@ -25,7 +25,7 @@ body {
   overscroll-behavior: none;
   color: var(--foreground);
   background: var(--background);
-  font-family: sans-serif;
+  font-family: 'PlanetFont', sans-serif;
 }
 
 @layer utilities {

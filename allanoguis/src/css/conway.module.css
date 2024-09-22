@@ -8,7 +8,7 @@
 
 .gridwrapper {
     border: 5px solid white;
-    display: flex;
+    display: grid;
 }
 
 .inputs {
@@ -23,8 +23,8 @@
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
+    display: block;
+    justify-content: space-around;
 }
 
 .togglebtn {
@@ -86,4 +86,8 @@
     width: 5px;
     height: 5px;
     border: 1px solid #eee;
+}
+
+.ConwayPage {
+    font-family: 'Spaceman', sans-serif;
 }
