@@ -28,7 +28,7 @@ const HeaderMain = () => {
     >
       <div className="flex h-[47px] items-center justify-between ml-4 px-4">
         {/* // MOBILE MODE!! RIGHT SIDE FULL SCREEN LOGO */}
-        <div className="group flex items-center space-x-4">
+        <div className="group flex items-center w-full space-x-4">
           <Link
             href="/"
             className="flex flex-row space-x-4 items-center justify-center md:flex"
