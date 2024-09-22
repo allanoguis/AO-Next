@@ -7,7 +7,7 @@ const gameProps = {
   cellsize: 5,
   width: 300,
   height: 400,
-  isRunning: true,
+  isRunning: false,
 };
 
 const ConwayPage: React.FC = () => {
