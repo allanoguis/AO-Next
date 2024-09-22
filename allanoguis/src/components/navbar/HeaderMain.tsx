@@ -5,7 +5,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "../../hooks/use-scroll";
 import { cn } from "../../lib/utils";
 import { WebhookIcon } from "@primer/octicons-react";
-import FullscreenMode from "@/components/fullscreen/FullscreenMode";
+import FullscreenMode from "@/lib/FullscreenMode";
 
 const brand: string = `///\).tkn`; //too edgy bro
 
