@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "@/css/fullscreen.module.css";
 import { ZoomOutIcon, ZoomInIcon } from "@primer/octicons-react";
 
@@ -17,18 +17,6 @@ const FullscreenMode: React.FC = () => {
       }
     }
   };
-
-  useEffect(() => {
-    const gridInput = document.getElementById("gridinput");
-
-    if (gridInput) {
-      if (isFullScreen) {
-        gridInput.style.display = "none";
-      } else {
-        gridInput.style.display = "";
-      }
-    }
-  }, [isFullScreen]);
 
   return (
     <div className={isFullScreen ? styles.fullscreen : ""}>
