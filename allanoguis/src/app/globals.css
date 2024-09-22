@@ -23,6 +23,7 @@
 
 body {
   overscroll-behavior: none;
+  overflow: hidden;
   color: var(--foreground);
   background: var(--background);
   font-family: 'PlanetFont', sans-serif;
