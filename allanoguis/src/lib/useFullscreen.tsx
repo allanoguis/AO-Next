@@ -21,10 +21,10 @@ const FullscreenMode: React.FC = () => {
   return (
     <div className={isFullScreen ? styles.fullscreen : ""}>
       <div
-        className={`${styles.fullscreenButton} font-mono text-xl font-regular flex items-center`}
+        className={`${styles.fullscreenButton} font-mono text-xl font-regular bg-transparent flex items-center`}
         onClick={toggleFullscreen}
       >
-        <span className="mr-4 items-center">fullscreen:</span>
+        <span className="items-center">fullscreen : &nbsp;</span>
         {isFullScreen ? <ZoomOutIcon size={16} /> : <ZoomInIcon size={16} />}
       </div>
     </div>

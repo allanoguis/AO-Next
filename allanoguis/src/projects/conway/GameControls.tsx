@@ -79,7 +79,7 @@ const GameControls: React.FC<GameControlsProps> = ({
               handleInputChange(setWidth, Number(e.target.value), 1)
             }
             min="1"
-            max="2000"
+            max="1000"
           />
           <p>Resolution (height): {height}</p>
           <input
@@ -89,7 +89,7 @@ const GameControls: React.FC<GameControlsProps> = ({
               handleInputChange(setHeight, Number(e.target.value), 1)
             }
             min="1"
-            max="2000"
+            max="1000"
           />
         </>
       )}
