@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
+import useDimensions from "@/hooks/useDimensions";
 import { usePathname } from "next/navigation";
 import { useCallback } from "react";
 import { SIDENAV_ITEMS } from "./NavElements";
@@ -252,18 +253,4 @@ const variants: {
   closed: {
     transition: { staggerChildren: 0.01, staggerDirection: -1 },
   },
-};
-
-const useDimensions = (ref: React.RefObject<HTMLElement>) => {
-  const dimensions = useRef({ width: 0, height: 0 });
-
-  useEffect(() => {
-    if (ref.current) {
-      dimensions.current.width = ref.current.offsetWidth;
-      dimensions.current.height = ref.current.offsetHeight;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref]);
-
-  return dimensions.current;
 };
