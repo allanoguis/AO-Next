@@ -51,7 +51,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         title: "Add me on Steam",
         path: "https://steamcommunity.com/id/madtoken2/",
       },
-      { title: "Learn Hacking 101", path: "https://overthewire.org/" },
+      { title: "Wargames 101", path: "https://overthewire.org/" },
     ],
   },
   {
