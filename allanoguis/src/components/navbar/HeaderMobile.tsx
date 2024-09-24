@@ -98,9 +98,9 @@ export default HeaderMobile;
 const MenuToggle: React.FC<{ toggle: () => void }> = ({ toggle }) => (
   <button
     onClick={toggle}
-    className="pointer-events-auto absolute right-4 top-[14px] z-30"
+    className="pointer-events-auto absolute right-4 top-2 z-30 bg-border"
   >
-    <svg width="23" height="23" viewBox="0 0 23 23">
+    <svg width="30" height="30" viewBox="-5 -6 30 30">
       <Path
         variants={{
           closed: { d: "M 2 2.5 L 20 2.5" },
@@ -172,13 +172,13 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
             >
               {item.title}
             </span>
-            <div className={`${subMenuOpen && "rotate-180"}`}>
+            <span className={`${subMenuOpen && "animate-pulse"}`}>
               <AiModelIcon size={24} />
-            </div>
+            </span>
           </div>
         </button>
       </MenuItem>
-      <div className="mt-2 ml-2 flex flex-col space-y-2">
+      <div className="flex flex-col mx-2 space-y-2">
         {subMenuOpen && (
           <>
             {item.subMenuItems?.map((subItem, subIdx) => {
