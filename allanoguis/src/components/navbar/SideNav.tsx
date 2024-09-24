@@ -12,7 +12,7 @@ const SideNav = () => {
   return (
     //main sidebar
     <div
-      className={`${styles.spacefont} md:w-60 bg-white h-screen flex-1 fixed backdrop-blur-lg hidden md:flex z-10`}
+      className={`${styles.spacefont} md:w-60 bg-background h-screen flex-1 fixed backdrop-blur-lg hidden md:flex z-10`}
     >
       <div className="flex flex-col space-y-6 pt-3 w-full">
         <div className="flex flex-col space-y-2 md:px-6 ">
@@ -41,8 +41,9 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           {/* Menu Item with Dropdown */}
           <button
             onClick={toggleSubMenu}
+            // Menu Item isActive => accent color
             className={`group flex flex-row items-center p-2 rounded-md w-full justify-between hover:bg-zinc-100 ${
-              pathname.includes(item.path) ? "bg-zinc-100" : ""
+              pathname.includes(item.path) ? "bg-red-100" : ""
             } ${styles.hover}`}
           >
             <div className="flex flex-row space-x-4 items-center">
@@ -74,7 +75,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                     className={`${
                       // Submenu link is active => font-weight: semibold
 
-                      subItem.path === pathname ? "bg-zinc-100" : ""
+                      subItem.path === pathname ? "bg-red-100" : ""
                     }`}
                   >
                     <span className="block p-2 py-1 rounded-md w-full font-medium hover:bg-zinc-100">

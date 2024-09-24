@@ -4,7 +4,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "@/hooks/useScroll";
 import { cn } from "@/lib/utils";
 import { WebhookIcon } from "@primer/octicons-react";
-import FullscreenMode from "@/lib/useFullscreen";
+import FullscreenMode from "./useFullscreen";
 
 const brand: string = `///\).tkn`; //too edgy bro
 
@@ -20,8 +20,8 @@ const HeaderMain = () => {
       className={cn(
         `sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200`,
         {
-          "border-b border-gray-200 bg-white/75 backdrop-blur-lg": scrolled,
-          "border-b border-gray-200 bg-white": selectedLayout,
+          "bg-background backdrop-blur-lg": scrolled,
+          "border-b border-border bg-background": selectedLayout,
         }
       )}
     >
@@ -39,8 +39,8 @@ const HeaderMain = () => {
         {/* // DESKTOP MODE!!! LEFT SIDE LOGO -- don't be confused */}
         <div className="flex-initial hidden md:grid [grid-template-areas:'stack'] pr-4">
           <div className="group">
-            <span className="[grid-area:stack] fixed top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-red-600 group-hover:animate-ping" />
-            <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-xl outline-1">
+            <span className="[grid-area:stack] fixed top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-bglogo group-hover:animate-ping" />
+            <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-logotext text-xl outline-1">
               {brand}
             </span>
           </div>

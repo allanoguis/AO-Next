@@ -52,7 +52,7 @@ const HeaderMobile = () => {
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-white"
+        className="absolute inset-0 right-0 w-full bg-background"
         variants={mobileMenu}
       />
       <motion.ul
@@ -81,7 +81,7 @@ const HeaderMobile = () => {
               )}
 
               {!isLastItem && (
-                <MenuItem className="my-3 h-px w-full bg-gray-300" />
+                <MenuItem className="my-3 h-px w-full bg-border" />
               )}
             </React.Fragment>
           );
