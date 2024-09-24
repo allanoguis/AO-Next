@@ -26,6 +26,9 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [showInputs, setShowInputs] = useState(true); // Add state for input visibility
+  const [darkModeColor, setDarkModeColor] = useState<string>("#00ff00"); // Set your desired dark mode color
+  const [maxWidth, setMaxWidth] = useState<number>(window.innerWidth * 0.8); // Set max width to 80% of the viewport width
+  const [maxHeight, setMaxHeight] = useState<number>(window.innerHeight * 0.8); // Set max height to 80% of the viewport height
 
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
@@ -45,10 +48,17 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
         const ctx = canvas.getContext("2d");
         if (ctx) {
           ctx.clearRect(0, 0, width, height);
+          const fillColor = "black"; // Light mode color
+
+          // Check if dark mode is enabled
+          const isDarkMode = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          ctx.fillStyle = isDarkMode ? darkModeColor : fillColor; // Use the manually set dark mode color
+
           currentGrid.cells.forEach((row, i) => {
             row.forEach((cell, j) => {
               if (cell.alive) {
-                ctx.fillStyle = "black";
                 ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
               }
             });
@@ -56,7 +66,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
         }
       }
     },
-    [cellSize, width, height]
+    [cellSize, width, height, darkModeColor] // Add darkModeColor to dependencies
   );
 
   const countNeighbors = useCallback(
@@ -115,25 +125,43 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
     return () => clearInterval(intervalId);
   }, [isRunning, updateGrid]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setMaxWidth(window.innerWidth * 0.8); // Update max width on resize
+      setMaxHeight(window.innerHeight * 0.8); // Update max height on resize
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className={styles.grid}>
       <div>
         <GameControls
           cellSize={cellSize}
           setCellSize={setCellSize}
-          width={width}
+          width={Math.min(width, maxWidth)} // Set width to the lesser of current width or maxWidth
           setWidth={setWidth}
-          height={height}
+          height={Math.min(height, maxHeight)} // Set height to the lesser of current height or maxHeight
           setHeight={setHeight}
           initializeGrid={initializeGrid}
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           showInputs={showInputs} // Pass visibility state
           setShowInputs={setShowInputs} // Pass setter for visibility
+          darkModeColor={darkModeColor} // Pass dark mode color to controls if needed
+          setDarkModeColor={setDarkModeColor} // Pass setter for dark mode color if needed
         />
       </div>
-      <div className={styles.gridwrapper}>
-        <canvas ref={canvasRef} width={width} height={height} />
+      <div className={`${styles.gridwrapper} border-b-4 border-black`}>
+        <canvas
+          ref={canvasRef}
+          width={Math.min(width, maxWidth)}
+          height={Math.min(height, maxHeight)}
+        />
       </div>
     </div>
   );

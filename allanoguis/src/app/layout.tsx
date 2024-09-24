@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SideNav from "../components/navbar/SideNav";
 import HeaderMobile from "../components/navbar/HeaderMobile";
-import WrapperPage from "../components/navbar/WrapperPage";
 import WrapperMain from "../components/navbar/WrapperMain";
 import HeaderMain from "../components/navbar/HeaderMain";
 
@@ -27,9 +26,7 @@ export default function RootLayout({
         <div className="flex">
           <SideNav />
           <main className="flex-1">
-            <WrapperMain>
-              <WrapperPage>{children}</WrapperPage>
-            </WrapperMain>
+            <WrapperMain>{children}</WrapperMain>
           </main>
         </div>
       </body>

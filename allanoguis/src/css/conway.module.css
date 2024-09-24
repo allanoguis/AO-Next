@@ -6,6 +6,11 @@
     padding-top: 1%;
 }
 
+.gridwrapper {
+    display: grid;
+    justify-content: center;
+}
+
 .inputs {
     display: block;
     justify-content: center;
