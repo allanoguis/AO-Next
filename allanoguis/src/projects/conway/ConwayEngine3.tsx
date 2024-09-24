@@ -26,7 +26,6 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [showInputs, setShowInputs] = useState(true); // Add state for input visibility
-  const [darkModeColor, setDarkModeColor] = useState<string>("#00ff00"); // Set your desired dark mode color
 
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
@@ -46,25 +45,18 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
         const ctx = canvas.getContext("2d");
         if (ctx) {
           ctx.clearRect(0, 0, width, height);
-          const fillColor = "black"; // Light mode color
-
-          // Check if dark mode is enabled
-          const isDarkMode = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-          ).matches;
-          ctx.fillStyle = isDarkMode ? darkModeColor : fillColor; // Use the manually set dark mode color
-
+          ctx.fillStyle = "#f0f0f0"; // Set canvas background color
+          ctx.fillRect(0, 0, width, height); // Fill the canvas with the background color
           currentGrid.cells.forEach((row, i) => {
             row.forEach((cell, j) => {
-              if (cell.alive) {
-                ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
-              }
+              ctx.fillStyle = cell.alive ? "#000000" : "#ffffff"; // Default colors for alive and dead cells
+              ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
             });
           });
         }
       }
     },
-    [cellSize, width, height, darkModeColor] // Add darkModeColor to dependencies
+    [cellSize, width, height]
   );
 
   const countNeighbors = useCallback(
@@ -138,8 +130,6 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
           setIsRunning={setIsRunning}
           showInputs={showInputs} // Pass visibility state
           setShowInputs={setShowInputs} // Pass setter for visibility
-          darkModeColor={darkModeColor} // Pass dark mode color to controls if needed
-          setDarkModeColor={setDarkModeColor} // Pass setter for dark mode color if needed
         />
       </div>
       <div className={styles.gridwrapper}>
