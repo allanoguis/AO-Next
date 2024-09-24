@@ -92,3 +92,13 @@
 .alive {
     color: black;
 }
+
+.dark-mode {
+    --canvas-fill-color: #00ff00;
+    /* Your desired dark mode color */
+}
+
+.light-mode {
+    --canvas-fill-color: #000000;
+    /* Your desired light mode color */
+}

@@ -25,10 +25,8 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
   const [grid, setGrid] = useState<Grid>({ cells: [] });
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [showInputs, setShowInputs] = useState<boolean>(true); // Add state for input visibility
+  const [showInputs, setShowInputs] = useState(true); // Add state for input visibility
   const [darkModeColor, setDarkModeColor] = useState<string>("#00ff00"); // Set your desired dark mode color
-  const [maxWidth, setMaxWidth] = useState<number>(window.innerWidth * 0.8); // Set max width to 80% of the viewport width
-  const [maxHeight, setMaxHeight] = useState<number>(window.innerHeight * 0.8); // Set max height to 80% of the viewport height
 
   const initializeGrid = useCallback(() => {
     const newCells: Cell[][] = [];
@@ -125,41 +123,27 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
     return () => clearInterval(intervalId);
   }, [isRunning, updateGrid]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setMaxWidth(window.innerWidth * 0.8); // Update max width on resize
-      setMaxHeight(window.innerHeight * 0.8); // Update max height on resize
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <div className={styles.grid}>
       <div>
         <GameControls
           cellSize={cellSize}
           setCellSize={setCellSize}
-          width={Math.min(width, maxWidth)} // Set width to the lesser of current width or maxWidth
+          width={width}
           setWidth={setWidth}
-          height={Math.min(height, maxHeight)} // Set height to the lesser of current height or maxHeight
+          height={height}
           setHeight={setHeight}
           initializeGrid={initializeGrid}
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           showInputs={showInputs} // Pass visibility state
           setShowInputs={setShowInputs} // Pass setter for visibility
+          darkModeColor={darkModeColor} // Pass dark mode color to controls if needed
+          setDarkModeColor={setDarkModeColor} // Pass setter for dark mode color if needed
         />
       </div>
-      <div className={`${styles.gridwrapper} border-b-4 border-black`}>
-        <canvas
-          ref={canvasRef}
-          width={Math.min(width, maxWidth)}
-          height={Math.min(height, maxHeight)}
-        />
+      <div className={styles.gridwrapper}>
+        <canvas ref={canvasRef} width={width} height={height} />
       </div>
     </div>
   );
