@@ -25,7 +25,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
   const [grid, setGrid] = useState<Grid>({ cells: [] });
   const [isRunning, setIsRunning] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [showInputs, setShowInputs] = useState(true); // Add state for input visibility
+  const [showInputs, setShowInputs] = useState<boolean>(true); // Add state for input visibility
   const [darkModeColor, setDarkModeColor] = useState<string>("#00ff00"); // Set your desired dark mode color
   const [maxWidth, setMaxWidth] = useState<number>(window.innerWidth * 0.8); // Set max width to 80% of the viewport width
   const [maxHeight, setMaxHeight] = useState<number>(window.innerHeight * 0.8); // Set max height to 80% of the viewport height
@@ -152,8 +152,6 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
           setIsRunning={setIsRunning}
           showInputs={showInputs} // Pass visibility state
           setShowInputs={setShowInputs} // Pass setter for visibility
-          darkModeColor={darkModeColor} // Pass dark mode color to controls if needed
-          setDarkModeColor={setDarkModeColor} // Pass setter for dark mode color if needed
         />
       </div>
       <div className={`${styles.gridwrapper} border-b-4 border-black`}>
