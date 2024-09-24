@@ -60,9 +60,6 @@ main {
   background-color: rgba(var(--background));
 }
 
-button:hover {
-  border-color: red;
-}
 
 @layer utilities {
   .text-balance {

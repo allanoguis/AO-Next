@@ -11,48 +11,50 @@
     justify-content: center;
 }
 
-.inputs {
+.input {
     display: block;
     justify-content: center;
     text-align: center;
-    gap: 1rem;
+    margin: 1rem;
 }
 
-.inputs>* {
-    padding: 5px;
+.input>input {
+    padding: 8px;
+    width: 250px;
+    height: 8px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.input>input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4caf50;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.input>input:hover {
+    opacity: 0.8;
 }
 
 .buttons {
-    display: block;
-    justify-content: space-around;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
 }
 
-.togglebtn {
+.buttons>button {
     margin: 5px;
     padding: 10px 20px;
-    border: 5px solid white;
+    border: 2px solid white;
     border-radius: 8px;
 }
 
-.defaultbtn {
-    margin: 5px;
-    padding: 10px 20px;
-    border: 5px solid white;
-    border-radius: 8px;
-}
-
-.start {
-    margin: 5px;
-    padding: 10px 20px;
-    border: 5px solid white;
-    border-radius: 8px;
-}
-
-.randomizebtn {
-    margin: 5px;
-    padding: 10px 20px;
-    border: 5px solid white;
-    border-radius: 8px;
+.buttons>button:hover {
+    border-color: red;
 }
 
 .gridDisplay {
@@ -64,14 +66,4 @@
 /* to style the grid idk in the future  */
 .row {
     display: flex;
-}
-
-.cell {
-    width: 5px;
-    height: 5px;
-    border: 1px solid #eee;
-}
-
-.alive {
-    color: black;
 }

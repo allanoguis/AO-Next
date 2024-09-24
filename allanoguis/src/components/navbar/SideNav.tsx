@@ -42,8 +42,8 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           <button
             onClick={toggleSubMenu}
             // Menu Item isActive => accent color
-            className={`group flex flex-row items-center p-2 rounded-md w-full justify-between hover:bg-zinc-100 ${
-              pathname.includes(item.path) ? "bg-red-100" : ""
+            className={`group flex flex-row items-center p-2 rounded-md w-full justify-between hover:bg-slate-700 ${
+              pathname.includes(item.path) ? "border-2" : ""
             } ${styles.hover}`}
           >
             <div className="flex flex-row space-x-4 items-center">
@@ -75,10 +75,10 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                     className={`${
                       // Submenu link is active => font-weight: semibold
 
-                      subItem.path === pathname ? "bg-red-100" : ""
+                      subItem.path === pathname ? "bg-slate-600" : ""
                     }`}
                   >
-                    <span className="block p-2 py-1 rounded-md w-full font-medium hover:bg-zinc-100">
+                    <span className="block p-2 py-1 rounded-md w-full font-medium hover:bg-slate-700">
                       {subItem.title}
                     </span>
                   </Link>
@@ -92,8 +92,8 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
 
         <Link
           href={item.path}
-          className={`group flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
-            item.path === pathname ? "bg-zinc-100" : ""
+          className={`group flex flex-row space-x-4 items-center p-2 rounded-md hover:bg-slate-700 ${
+            item.path === pathname ? "border-2" : ""
           }`}
         >
           {/* Menu items without Submenu */}

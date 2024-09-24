@@ -40,27 +40,25 @@ const GameControls: React.FC<GameControlsProps> = ({
   };
 
   return (
-    <div className={styles.inputs} id="gridinput">
-      <button
-        className={styles.defaultbtn}
-        onClick={() => {
-          setCellSize(5); // Reset to default cell size
-          setWidth(350); // Reset to default width
-          setHeight(400); // Reset to default height
-          setIsRunning(false); // Stop the grid if running
-        }}
-      >
-        Reset Grid Default
-      </button>
+    <div className={styles.inputs}>
+      <div className={styles.buttons}>
+        <button
+          onClick={() => {
+            setCellSize(5); // Reset to default cell size
+            setWidth(350); // Reset to default width
+            setHeight(400); // Reset to default height
+            setIsRunning(false); // Stop the grid if running
+          }}
+        >
+          Reset Grid Default
+        </button>
 
-      <button
-        className={styles.togglebtn}
-        onClick={() => setShowInputs(!showInputs)}
-      >
-        Toggle Inputs
-      </button>
+        <button onClick={() => setShowInputs(!showInputs)}>
+          Toggle Inputs
+        </button>
+      </div>
       {showInputs && ( //inputs section
-        <>
+        <div className={styles.input}>
           <p>Cell Size: {cellSize}</p>
           <input
             type="range"
@@ -91,17 +89,12 @@ const GameControls: React.FC<GameControlsProps> = ({
             min="1"
             max="1000"
           />
-        </>
+        </div>
       )}
 
-      <div className={styles.buttons} id="gridbtn">
-        <button className={styles.randomizebtn} onClick={initializeGrid}>
-          Randomize Cells
-        </button>
-        <button
-          className={styles.start}
-          onClick={() => setIsRunning(!isRunning)}
-        >
+      <div className={styles.buttons}>
+        <button onClick={initializeGrid}>Randomize Cells</button>
+        <button onClick={() => setIsRunning(!isRunning)}>
           {isRunning ? "Stop" : "Start"}
         </button>
       </div>
