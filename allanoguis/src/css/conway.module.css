@@ -26,16 +26,6 @@
     transition: opacity 0.2s;
 }
 
-.input>input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #4caf50;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
 .input>input:hover {
     opacity: 0.8;
 }
