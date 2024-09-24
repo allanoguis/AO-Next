@@ -52,7 +52,7 @@ const HeaderMobile = () => {
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-slate-900/95"
+        className="absolute inset-0 right-0 w-full bg-background dark:bg-slate-900/95"
         variants={mobileMenu}
       />
       <motion.ul
@@ -98,7 +98,7 @@ export default HeaderMobile;
 const MenuToggle: React.FC<{ toggle: () => void }> = ({ toggle }) => (
   <button
     onClick={toggle}
-    className="pointer-events-auto absolute right-4 top-2 z-30 bg-border"
+    className="pointer-events-auto absolute right-4 top-2 z-30 bg-background dark:bg-border"
   >
     <svg width="30" height="30" viewBox="-5 -6 31 30">
       <Path
