@@ -52,7 +52,7 @@ const HeaderMobile = () => {
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-slate-900"
+        className="absolute inset-0 right-0 w-full bg-slate-900/90"
         variants={mobileMenu}
       />
       <motion.ul

@@ -30,7 +30,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: 0, 0, 0;
+    --background: 15, 23, 40;
     --foreground: 0, 0, 0;
     --body-text: 0, 255, 0;
     --logo-bg: 230, 38, 38;
