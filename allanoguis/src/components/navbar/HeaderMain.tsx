@@ -18,31 +18,26 @@ const HeaderMain = () => {
   return (
     <div
       //STICKY BAR ON TOP!
-      className={cn(
-        `sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200`,
-        {
-          "bg-background backdrop-blur-lg": scrolled,
-          "border-b border-border bg-background": selectedLayout,
-        }
-      )}
+      className={cn(`sticky inset-x-0 top-0 z-30 w-full transition-all`, {
+        "bg-background backdrop-blur-lg": scrolled,
+        "border-b border-border bg-background": selectedLayout,
+      })}
     >
-      <div className="flex h-[47px] items-center justify-between ml-4 px-4">
+      <div className="flex h-[50px] items-center justify-between ml-4 px-4">
         {/* // MOBILE MODE!! RIGHT SIDE FULL SCREEN LOGO */}
         <div className="flex items-center w-full space-x-4">
-          <div className="group flex flex-row space-x-4 items-center justify-center md:flex">
-            <span className="group-hover:animate-spin">
-              <WebhookIcon size={24} />
-            </span>
+          <div className="group flex flex-row space-x-4 items-center justify-center">
+            <WebhookIcon size={24} className="group-hover:animate-spin" />
             <FullscreenMode />
-            <DarkMode />
           </div>
+          <DarkMode />
         </div>
 
         {/* // DESKTOP MODE!!! LEFT SIDE LOGO -- don't be confused */}
-        <div className="flex-initial hidden md:grid [grid-template-areas:'stack'] pr-4">
-          <div className="group">
-            <span className="[grid-area:stack] fixed top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-bglogo group-hover:animate-ping" />
-            <span className="[grid-area:stack] fixed top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-logotext text-xl outline-1">
+        <div className="flex-initial hidden  md:flex pr-4">
+          <div className="group [grid-template-areas:'stack'] items-center">
+            <span className="[grid-area:stack] absolute top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-bglogo group-hover:animate-ping" />
+            <span className="[grid-area:stack] absolute top-2.5 right-5 p-0 m-0 font-mono font-extrabold text-logotext text-xl outline-1">
               {brand}
             </span>
           </div>
