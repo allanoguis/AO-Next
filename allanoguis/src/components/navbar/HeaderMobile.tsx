@@ -98,7 +98,7 @@ export default HeaderMobile;
 const MenuToggle: React.FC<{ toggle: () => void }> = ({ toggle }) => (
   <button
     onClick={toggle}
-    className="pointer-events-auto absolute right-4 top-2 z-30 bg-background dark:bg-border"
+    className="pointer-events-auto absolute right-4 top-2 z-30 bg-background-border"
   >
     <svg width="30" height="30" viewBox="-5 -6 31 30">
       <Path

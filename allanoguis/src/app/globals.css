@@ -70,6 +70,7 @@ body {
   font-family: 'PlanetFont', sans-serif;
   color: rgba(var(--body-text));
   background-color: rgba(var(--background));
+  transition: 400ms ease;
 }
 
 @layer utilities {

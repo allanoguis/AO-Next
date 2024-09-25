@@ -40,25 +40,20 @@ const GameControls: React.FC<GameControlsProps> = ({
   };
 
   return (
-    <div className={styles.inputs}>
-      <div className={styles.buttons}>
-        <button
-          onClick={() => {
-            setCellSize(5); // Reset to default cell size
-            setWidth(350); // Reset to default width
-            setHeight(400); // Reset to default height
-            setIsRunning(false); // Stop the grid if running
-          }}
-        >
-          Reset Grid Default
-        </button>
-
-        <button onClick={() => setShowInputs(!showInputs)}>
-          Toggle Inputs
-        </button>
-      </div>
-      {showInputs && ( //inputs section
+    <div>
+      {!showInputs && ( //inputs section
         <div className={styles.input}>
+          <button
+            onClick={() => {
+              setCellSize(5); // Reset to default cell size
+              setWidth(350); // Reset to default width
+              setHeight(400); // Reset to default height
+              setIsRunning(false); // Stop the grid if running
+            }}
+          >
+            Reset Settings
+          </button>
+
           <p>Cell Size: {cellSize}</p>
           <input
             type="range"
@@ -93,10 +88,11 @@ const GameControls: React.FC<GameControlsProps> = ({
       )}
 
       <div className={styles.buttons}>
-        <button onClick={initializeGrid}>Randomize Cells</button>
+        <button onClick={() => setShowInputs(!showInputs)}>Settings</button>
         <button onClick={() => setIsRunning(!isRunning)}>
-          {isRunning ? "Stop" : "Start"}
+          {isRunning ? "Pause Game" : "Game Start"}
         </button>
+        <button onClick={initializeGrid}>Restart</button>
       </div>
     </div>
   );

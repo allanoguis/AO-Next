@@ -4,7 +4,7 @@ import { MoonIcon, SunIcon } from "@primer/octicons-react";
 import { useState } from "react";
 
 const DarkMode: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(Boolean);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
