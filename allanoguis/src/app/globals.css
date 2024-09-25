@@ -9,13 +9,12 @@
   font-style: normal;
 }
 
-:root {
+.light {
   --background: 255, 255, 255;
   --foreground: 23, 23, 23;
   --body-text: 0, 0, 0;
   --logo-bg: 230, 38, 38;
   --logo-text: 0, 0, 0;
-  /*black logo text*/
   --nav-menu: 0, 0, 0;
   --nav-sub: 0, 0, 0;
   --border: 0, 0, 0;
@@ -28,14 +27,31 @@
   --cell-color: 0, 0, 0;
 }
 
+.dark {
+  --background: 15, 23, 42;
+  --foreground: 0, 0, 0;
+  --body-text: 0, 255, 0;
+  --logo-bg: 230, 38, 38;
+  --logo-text: 255, 255, 255;
+  --nav-menu: 0, 0, 0;
+  --nav-sub: 0, 0, 0;
+  --border: 0, 255, 0;
+  --cta: 0, 0, 0;
+  --cta-text: 0, 0, 0;
+  --cta-active: 0, 0, 0;
+  --btn-primary: 0, 0, 0;
+  --btn-secondary: 0, 0, 0;
+  --accent: 0, 0, 0;
+  --cell-color: 0, 255, 0;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: 15, 23, 40;
+    --background: 15, 23, 42;
     --foreground: 0, 0, 0;
     --body-text: 0, 255, 0;
     --logo-bg: 230, 38, 38;
     --logo-text: 255, 255, 255;
-    /*white logo text*/
     --nav-menu: 0, 0, 0;
     --nav-sub: 0, 0, 0;
     --border: 0, 255, 0;
@@ -55,11 +71,6 @@ body {
   color: rgba(var(--body-text));
   background-color: rgba(var(--background));
 }
-
-main {
-  background-color: rgba(var(--background));
-}
-
 
 @layer utilities {
   .text-balance {

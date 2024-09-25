@@ -5,6 +5,7 @@ import useScroll from "@/hooks/useScroll";
 import { cn } from "@/lib/utils";
 import { WebhookIcon } from "@primer/octicons-react";
 import FullscreenMode from "./useFullscreen";
+import DarkMode from "./darkMode";
 
 const brand: string = `///\).tkn`; //too edgy bro
 
@@ -33,6 +34,7 @@ const HeaderMain = () => {
               <WebhookIcon size={24} />
             </span>
             <FullscreenMode />
+            <DarkMode />
           </div>
         </div>
 
