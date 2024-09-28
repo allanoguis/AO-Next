@@ -23,8 +23,10 @@
   --cta-active: 0, 0, 0;
   --btn-primary: 0, 0, 0;
   --btn-secondary: 0, 0, 0;
-  --accent: 0, 0, 0;
-  --cell-color: 0, 0, 0;
+  --accent-primary: 0, 0, 0;
+  --accent-secondary: 0, 0, 0;
+  --cell-color: 255, 255, 255;
+  --hamburgerbg: 255, 255, 255;
 }
 
 .dark {
@@ -41,8 +43,10 @@
   --cta-active: 0, 0, 0;
   --btn-primary: 0, 0, 0;
   --btn-secondary: 0, 0, 0;
-  --accent: 0, 0, 0;
+  --accent-primary: 71, 85, 105;
+  --accent-secondary: 51, 65, 85;
   --cell-color: 0, 255, 0;
+  --hamburgerbg: 0, 255, 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,8 +64,10 @@
     --cta-active: 0, 0, 0;
     --btn-primary: 0, 0, 0;
     --btn-secondary: 0, 0, 0;
-    --accent: 0, 0, 0;
+    --accent-primary: 71, 85, 105;
+    --accent-secondary: 51, 65, 85;
     --cell-color: 0, 255, 0;
+    --hamburgerbg: 0, 255, 0;
   }
 }
 

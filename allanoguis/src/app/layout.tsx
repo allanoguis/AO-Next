@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SideNav from "../components/navbar/SideNav";
 import HeaderMobile from "../components/navbar/HeaderMobile";
-import WrapperMain from "../components/navbar/WrapperMain";
+import WrapperMain from "../components/navbar/pageWrapper";
 import HeaderMain from "../components/navbar/HeaderMain";
 
 const currentDate = new Date();

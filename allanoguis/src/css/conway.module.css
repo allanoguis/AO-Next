@@ -68,4 +68,5 @@
 
 .buttons>button:hover {
     color: red;
+    color: hsl(0, 100%, 50%)
 }

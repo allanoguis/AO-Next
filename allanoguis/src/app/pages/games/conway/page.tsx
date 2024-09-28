@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import GameOfLife from "@/projects/conway/ConwayEngine3";
+import GameOfLife from "@/games/conway/ConwayEngine3";
 
 const gameProps = {
   cellsize: 5,
@@ -12,7 +12,7 @@ const gameProps = {
 const ConwayPage: React.FC = () => {
   return (
     <div className="min-h-dvh overflow-hidden">
-      <h1 className="text-center p-11 text-2xl font-bold">
+      <h1 className="text-center p-3 pb-0 text-2xl font-bold">
         Conway Game of Life v3.0
       </h1>
       <GameOfLife {...gameProps} onGridUpdate={() => {}} />

@@ -11,8 +11,10 @@ import styles from "../../css/nav.module.css";
 const SideNav = () => {
   return (
     //main sidebar
-    <div
-      className={`${styles.spacefont} md:w-60 bg-background h-screen flex-1 fixed backdrop-blur-lg hidden md:flex z-10`}
+    <aside
+      className={
+        "md:w-60 bg-background h-screen flex-1 fixed backdrop-blur-lg hidden md:flex z-50"
+      }
     >
       <div className="flex flex-col space-y-6 pt-3 w-full">
         <div className="flex flex-col space-y-2 md:px-6 ">
@@ -21,7 +23,7 @@ const SideNav = () => {
           })}
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
@@ -42,8 +44,8 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           <button
             onClick={toggleSubMenu}
             // Menu Item isActive => accent color
-            className={`group flex flex-row items-center p-2 rounded-md w-full justify-between hover:bg-red-700/50 dark:hover:bg-slate-700 ${
-              pathname.includes(item.path) ? "bg-red-700/20 dark:border-2" : ""
+            className={`group flex flex-row items-center p-2 rounded-sm w-full justify-between hover:bg-slate-700/50 ${
+              pathname.includes(item.path) ? "bg-accent-primary text-white" : ""
             } ${styles.hover}`}
           >
             <div className="flex flex-row space-x-4 items-center">
@@ -66,7 +68,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
           {/* Submenu item */}
 
           {isActive && (
-            <div className="my-2 text-right flex flex-col space-y-4">
+            <div className="my-2 text-right flex flex-col space-y-4 ">
               {item.subMenuItems?.map((subItem, keyIndex) => {
                 return (
                   <Link
@@ -76,11 +78,11 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                       // Submenu link is active => font-weight: semibold
 
                       subItem.path === pathname
-                        ? "bg-red-700/50 dark:bg-slate-600"
+                        ? "bg-accent-secondary text-white"
                         : ""
                     }`}
                   >
-                    <span className="block p-2 py-1 rounded-sm w-full font-medium  hover:bg-red-700/50 dark:hover:bg-slate-700">
+                    <span className="block p-2 py-1 rounded-sm w-full font-medium hover:bg-slate-700/50">
                       {subItem.title}
                     </span>
                   </Link>
@@ -91,17 +93,18 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
         </>
       ) : (
         // if submenu link is not active => should enable on hover effects
-
-        <Link
-          href={item.path}
-          className={`group flex flex-row space-x-4 items-center p-2 rounded-sm hover:bg-red-700/50 dark:hover:bg-slate-700 ${
-            item.path === pathname ? "bg-red-700/20 dark:border-2" : ""
-          }`}
-        >
-          {/* Menu items without Submenu */}
-          <span className="group-hover:animate-bounce">{item.icon}</span>
-          <span className="font-medium text-xl flex">{item.title}</span>
-        </Link>
+        <>
+          <Link
+            href={item.path}
+            className={`group flex flex-row space-x-4 items-center p-2 rounded-sm hover:bg-slate-700/50 ${
+              item.path === pathname ? "bg-accent-primary text-white" : ""
+            }`}
+          >
+            {/* Menu items without Submenu */}
+            <span className="group-hover:animate-bounce">{item.icon}</span>
+            <span className="font-medium text-xl flex">{item.title}</span>
+          </Link>
+        </>
       )}
     </div>
   );

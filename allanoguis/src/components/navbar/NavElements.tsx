@@ -21,31 +21,31 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     icon: <CodespacesIcon size={24} />,
   },
   {
-    title: "Stuff",
-    path: "/pages/stuff",
-    icon: <HubotIcon size={24} />,
-  },
-  {
-    title: "Projects",
-    path: "/projects",
+    title: "Games",
+    path: "/games",
     icon: <RocketIcon size={24} />,
     submenu: true,
     subMenuItems: [
-      { title: "Game of Life", path: "/pages/projects/conway" },
-      { title: "Tic Tac Toe", path: "/pages/projects/tictactoe" },
-      { title: "Battle Ship", path: "/pages/projects/battleship" },
-      { title: "Anonymous Chat", path: "/pages/projects/anonymous" },
+      { title: "Game of Life", path: "/pages/games/conway" },
+      { title: "Tic Tac Toe", path: "/pages/games/tictactoe" },
+      { title: "Battle Ship", path: "/pages/games/battleship" },
+      { title: "Anonymous Chat", path: "/pages/games/anonymous" },
     ],
   },
   {
+    title: "Projects",
+    path: "/pages/projects/",
+    icon: <HubotIcon size={24} />,
+  },
+  {
     title: "Bored?",
-    path: "/merch",
+    path: "/links",
     icon: <CodeOfConductIcon size={24} />,
     submenu: true,
     subMenuItems: [
       {
         title: "Join our Discord",
-        path: "https://discord.gg/8efXHN6E",
+        path: "https://discord.gg/JbKrWDaN7Q",
       },
       {
         title: "Add me on Steam",

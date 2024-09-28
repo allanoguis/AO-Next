@@ -19,7 +19,7 @@ const FullscreenMode: React.FC = () => {
 
   return (
     <div
-      className={"bg-transparent flex items-center gap-2 cursor-"}
+      className={"bg-transparent flex items-center gap-2 cursor-pointer"}
       onClick={toggleFullscreen}
     >
       <span className="flex items-center">fullscreen </span>
