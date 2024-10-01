@@ -1,14 +1,13 @@
 "use client";
-import React, { useState } from "react";
 import { motion } from "framer-motion"; // Updated import to use motion
+import { useState } from "react";
 
-const ScrollingGraphic: React.FC = () => {
-  const [gameStart, setgameStart] = useState(false); // State to control animation
-  // const safari = newSafari;
 
-  const handleClick = () => {
-    setgameStart(true); // Start animation on button click
-  };
+
+const Safari = () => {
+
+  const [isRunning, setIsRunning] = useState();
+
 
   return (
     <>
@@ -22,7 +21,7 @@ const ScrollingGraphic: React.FC = () => {
           height="200"
           viewBox="0 0 550 200"
           xmlns="http://www.w3.org/2000/svg"
-          animate={{ x: gameStart ? -550 : 0 }} // Animate the x position
+          animate={{ x: isRunning ? -550 : 0 }} // Animate the x position
           transition={{ duration: 5, repeat: Infinity, ease: "linear" }} // Animation properties
         >
           {/* Sky */}
@@ -99,14 +98,14 @@ const ScrollingGraphic: React.FC = () => {
           </g>
         </motion.svg>
       </div>
+      {/* game trigger */}
       <div className="flex w-full justify-center">
-        <button onClick={handleClick}>Start Animation</button>{" "}
-        {/* Fixed button click handler */}
+        <button onClick={() => setIsRunning(!isRunning)}>
+          Start Animation
+        </button>
       </div>
     </>
   );
-
-  function unliScroll();
 };
 
-export default ScrollingGraphic;
+export default Safari;

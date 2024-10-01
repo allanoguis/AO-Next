@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollingGraphic from "../../../games/trex/safari";
+import Safari from "../../../games/trex/safari";
 
 const App: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const App: React.FC = () => {
         <h1>AREA 51 SECTION</h1>
       </div>
 
-      <ScrollingGraphic />
+      <Safari />
     </div>
   );
 };
