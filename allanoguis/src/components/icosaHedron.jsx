@@ -10,12 +10,11 @@ const color = "#111111";
 const Icosahedron = () => (
   <mesh rotation-x={0.35}>
     <icosahedronGeometry args={[1, 0]} />
-    <meshBasicMaterial wireframe color={color} />
+    <meshBasicMaterial attach="material" args={[{ color: color }]} />
   </mesh>
 );
-
-const Star = ({ p }: { p: number }) => {
-  const ref = useRef<THREE.Object3D>(null);
+const Star = ({ p }) => {
+  const ref = useRef(null);
 
   useLayoutEffect(() => {
     const distance = mix(2, 3.5, Math.random());
@@ -25,13 +24,15 @@ const Star = ({ p }: { p: number }) => {
       Math.random()
     );
     const xAngle = degreesToRadians(360) * p;
-    ref.current!.position.setFromSphericalCoords(distance, yAngle, xAngle);
+    if (ref.current) {
+      ref.current.position.setFromSphericalCoords(distance, yAngle, xAngle);
+    }
   });
 
   return (
     <mesh ref={ref}>
       <boxGeometry args={[0.05, 0.05, 0.05]} />
-      <meshBasicMaterial wireframe color={color} />
+      <meshBasicMaterial attach="material" args={[{ color: color }]} />
     </mesh>
   );
 };

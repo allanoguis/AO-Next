@@ -9,8 +9,6 @@ import DarkMode from "./darkMode";
 
 const brand: string = `///\).tkn`; //too edgy bro
 
-// THIS IS THE MOBILE HEADER refactor gotta refactor the whole code. too much coffee
-
 const HeaderMain = () => {
   const scrolled = useScroll(5);
   const selectedLayout = useSelectedLayoutSegment();
@@ -24,7 +22,7 @@ const HeaderMain = () => {
       })}
     >
       <div className="flex h-[50px] items-center justify-between ml-4 px-4">
-        {/* // MOBILE MODE!! RIGHT SIDE FULL SCREEN LOGO */}
+        {/* left side */}
         <div className="flex items-center w-full space-x-4">
           <div className="group flex flex-row space-x-4 items-center justify-center">
             <WebhookIcon size={24} className="group-hover:animate-spin" />
@@ -33,7 +31,7 @@ const HeaderMain = () => {
           <DarkMode />
         </div>
 
-        {/* // DESKTOP MODE!!! LEFT SIDE LOGO -- don't be confused */}
+        {/* right side */}
         <div className="flex-initial hidden  md:flex pr-4">
           <div className="group [grid-template-areas:'stack'] items-center">
             <span className="[grid-area:stack] absolute top-1 right-4 h-10 w-10 m-0 p-0  rounded-full bg-bglogo group-hover:animate-ping" />

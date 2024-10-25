@@ -10,13 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        scroll: 'scroll 20s linear infinite', // Added animation value
+        scroll: 'scroll 20s linear infinite', 
+        "rotate-slower": 'rotate 2s linear infinite',
       },
       keyframes: {
         scroll: {
           '0%': { transform: 'translateX(100%)' },
           '100%': { transform: 'translateX(-100%)' },
-        }},
+        },
+      "rotate-slower": {
+          '0%': { transform: 'rotate(0deg)' }, 
+          '100%': { transform: 'rotate(360deg)' }, 
+      }
+      },
       colors: {
         background: "rgba(var(--background))",
         foreground: "rgba(var(--foreground))",
