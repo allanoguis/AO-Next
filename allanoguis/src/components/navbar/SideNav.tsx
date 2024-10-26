@@ -2,13 +2,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SIDENAV_ITEMS } from "./NavElements";
-import { SideNavItem } from "./NavElements";
+import { SIDENAV_ITEMS } from "./sideNavMenu";
+import { SideNavItem } from "./sideNavMenu";
 import { AiModelIcon } from "@primer/octicons-react";
-import styles from "../../css/nav.module.css";
 
 // SideNav Component
-const SideNav = () => {
+const SideBar = () => {
   return (
     //main sidebar
     <aside
@@ -27,7 +26,7 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default SideBar;
 
 const MenuItem = ({ item }: { item: SideNavItem }) => {
   const pathname = usePathname();
@@ -37,7 +36,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
   };
 
   return (
-    <div className={styles.spacefont}>
+    <div>
       {item.submenu ? (
         <>
           {/* Menu Item with Dropdown */}
@@ -46,7 +45,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
             // Menu Item isActive => accent color
             className={`group flex flex-row items-center p-2 rounded-sm w-full justify-between hover:bg-slate-700/50 ${
               pathname.includes(item.path) ? "bg-accent-primary text-white" : ""
-            } ${styles.hover}`}
+            } `}
           >
             <div className="flex flex-row space-x-4 items-center">
               <span className="group-hover:animate-bounce ">{item.icon}</span>
@@ -56,11 +55,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
 
             {/* Menu item dropdown icon */}
 
-            <div
-              className={`${
-                isActive ? `duration-200 ease-in ${styles.rotate}` : ""
-              } flex`}
-            >
+            <div className={`${isActive ? `duration-200 ease-in ` : ""} flex`}>
               <AiModelIcon size={16} />
             </div>
           </button>

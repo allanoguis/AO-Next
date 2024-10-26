@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "@/hooks/useScroll";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/twmerge";
 import { WebhookIcon } from "@primer/octicons-react";
 import FullscreenMode from "./useFullscreen";
 import DarkMode from "./darkMode";
