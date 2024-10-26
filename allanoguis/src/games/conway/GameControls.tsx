@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/css/conway.module.css";
+import styles from "./conway.module.css";
 
 interface GameControlsProps {
   cellSize: number;
@@ -90,9 +90,9 @@ const GameControls: React.FC<GameControlsProps> = ({
       <div className={styles.buttons}>
         <button onClick={() => setShowInputs(!showInputs)}>Settings</button>
         <button onClick={() => setIsRunning(!isRunning)}>
-          {isRunning ? "Pause Game" : "Game Start"}
+          {isRunning ? "Pause" : "Play"}
         </button>
-        <button onClick={initializeGrid}>Restart</button>
+        <button onClick={initializeGrid}>Reset</button>
       </div>
     </div>
   );

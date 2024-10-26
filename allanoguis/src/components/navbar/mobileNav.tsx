@@ -4,8 +4,8 @@ import Link from "next/link";
 import useDimensions from "@/hooks/useDimensions";
 import { usePathname } from "next/navigation";
 import { useCallback } from "react";
-import { SIDENAV_ITEMS } from "./NavElements";
-import { SideNavItem } from "./NavElements";
+import { SIDENAV_ITEMS } from "./sideNavMenu";
+import { SideNavItem } from "./sideNavMenu";
 import { AiModelIcon } from "@primer/octicons-react";
 import { motion, useCycle } from "framer-motion";
 
@@ -42,53 +42,55 @@ const HeaderMobile = () => {
   const handleToggle = useCallback(() => toggleOpen(), [toggleOpen]);
 
   return (
-    <motion.nav
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden ${
-        isOpen ? "" : "pointer-events-none"
-      }`}
-      ref={containerRef}
-    >
-      <motion.div
-        className="absolute inset-0 right-0 w-full bg-background"
-        variants={mobileMenu}
-      />
-      <motion.ul
-        variants={variants}
-        className="absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto z-10"
+    <>
+      <motion.nav
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        custom={height}
+        className={`fixed inset-0 z-50 w-full md:hidden ${
+          isOpen ? "" : "pointer-events-none"
+        }`}
+        ref={containerRef}
       >
-        {SIDENAV_ITEMS.map((item, idx) => {
-          const isLastItem = idx === SIDENAV_ITEMS.length - 1; // Check if it's the last item
+        <motion.div
+          className="absolute inset-0 right-0 w-full bg-background"
+          variants={mobileMenu}
+        />
+        <motion.ul
+          variants={variants}
+          className="absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto z-10"
+        >
+          {SIDENAV_ITEMS.map((item, idx) => {
+            const isLastItem = idx === SIDENAV_ITEMS.length - 1; // Check if it's the last item
 
-          return (
-            <React.Fragment key={item.title}>
-              {item.submenu ? (
-                <MenuItemWithSubMenu item={item} toggleOpen={handleToggle} />
-              ) : (
-                <MenuItem>
-                  <Link
-                    href={item.path}
-                    onClick={handleToggle}
-                    className={`flex w-full text-2xl ${
-                      item.path === pathname ? "font-bold" : ""
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
-                </MenuItem>
-              )}
+            return (
+              <React.Fragment key={item.title}>
+                {item.submenu ? (
+                  <MenuItemWithSubMenu item={item} toggleOpen={handleToggle} />
+                ) : (
+                  <MenuItem>
+                    <Link
+                      href={item.path}
+                      onClick={handleToggle}
+                      className={`flex w-full text-2xl ${
+                        item.path === pathname ? "font-bold" : ""
+                      }`}
+                    >
+                      {item.title}
+                    </Link>
+                  </MenuItem>
+                )}
 
-              {!isLastItem && (
-                <MenuItem className="my-3 h-px w-full bg-border" />
-              )}
-            </React.Fragment>
-          );
-        })}
-      </motion.ul>
-      <MenuToggle toggle={handleToggle} />
-    </motion.nav>
+                {!isLastItem && (
+                  <MenuItem className="my-3 h-px w-full bg-border" />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </motion.ul>
+        <MenuToggle toggle={handleToggle} />
+      </motion.nav>
+    </>
   );
 };
 
@@ -145,9 +147,11 @@ const MenuItem = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <motion.li variants={MenuItemVariants} className={className}>
-      {children}
-    </motion.li>
+    <>
+      <motion.li variants={MenuItemVariants} className={className}>
+        {children}
+      </motion.li>
+    </>
   );
 };
 

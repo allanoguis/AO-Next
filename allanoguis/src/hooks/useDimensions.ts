@@ -7,8 +7,11 @@ const useDimensions = (ref: React.RefObject<HTMLElement>) => {
       if (ref.current) {
         dimensions.current.width = ref.current.offsetWidth;
         dimensions.current.height = ref.current.offsetHeight;
+      } else {
+        // Handle the case where ref.current is undefined
+        dimensions.current.width = 0;
+        dimensions.current.height = 0;
       }
-     
     }, [ref]);
   
     return dimensions.current;

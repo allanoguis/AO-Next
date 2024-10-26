@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import styles from "@/css/conway.module.css";
+import styles from "./conway.module.css";
 import GameControls from "./GameControls";
 
 interface Cell {
@@ -11,7 +11,7 @@ interface Grid {
 }
 
 interface GameOfLifeProps {
-  cellsize: number;
+  cellSize: number;
   width: number;
   height: number;
   isRunning: boolean;

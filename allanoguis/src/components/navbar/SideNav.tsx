@@ -2,18 +2,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SIDENAV_ITEMS } from "./NavElements";
-import { SideNavItem } from "./NavElements";
+import { SIDENAV_ITEMS } from "./sideNavMenu";
+import { SideNavItem } from "./sideNavMenu";
 import { AiModelIcon } from "@primer/octicons-react";
-import styles from "../../css/nav.module.css";
 
 // SideNav Component
-const SideNav = () => {
+const SideBar = () => {
   return (
-    //main sidebar
+    // sidebar
     <aside
       className={
-        "md:w-60 bg-background h-screen flex-1 fixed backdrop-blur-lg hidden md:flex z-50"
+        "md:w-60 bg-background h-full fixed backdrop-blur-lg hidden sm: md:flex"
       }
     >
       <div className="flex flex-col space-y-6 pt-3 w-full">
@@ -27,46 +26,50 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default SideBar;
 
-const MenuItem = ({ item }: { item: SideNavItem }) => {
+const MenuItem = React.memo(({ item }: { item: SideNavItem }) => {
+  // Memoized component
+  MenuItem.displayName = "MenuItem"; // Added display name for the component
   const pathname = usePathname();
   const [isActive, setIsActive] = useState(false);
   const toggleSubMenu = () => {
     setIsActive(!isActive);
   };
 
+  const getButtonClass = () => {
+    return `group flex flex-row items-center p-2 rounded-sm w-full justify-between hover:bg-slate-700/50 ${
+      pathname.includes(item.path) ? "bg-accent-primary text-white" : ""
+    }`;
+  };
+
+  const getLinkClass = (subItemPath: string) => {
+    return `${
+      subItemPath === pathname ? "bg-accent-secondary text-white" : ""
+    }`;
+  };
+
   return (
-    <div className={styles.spacefont}>
+    <div>
       {item.submenu ? (
         <>
           {/* Menu Item with Dropdown */}
           <button
             onClick={toggleSubMenu}
-            // Menu Item isActive => accent color
-            className={`group flex flex-row items-center p-2 rounded-sm w-full justify-between hover:bg-slate-700/50 ${
-              pathname.includes(item.path) ? "bg-accent-primary text-white" : ""
-            } ${styles.hover}`}
+            className={getButtonClass()} // Use helper function for class names
           >
             <div className="flex flex-row space-x-4 items-center">
               <span className="group-hover:animate-bounce ">{item.icon}</span>
-
               <span className="font-medium text-xl flex">{item.title}</span>
             </div>
 
             {/* Menu item dropdown icon */}
-
-            <div
-              className={`${
-                isActive ? `duration-200 ease-in ${styles.rotate}` : ""
-              } flex`}
-            >
+            <div className={`${isActive ? `duration-200 ease-in ` : ""} flex`}>
               <AiModelIcon size={16} />
             </div>
           </button>
 
           {/* Submenu item */}
-
           {isActive && (
             <div className="my-2 text-right flex flex-col space-y-4 ">
               {item.subMenuItems?.map((subItem, keyIndex) => {
@@ -74,13 +77,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
                   <Link
                     key={keyIndex}
                     href={subItem.path}
-                    className={`${
-                      // Submenu link is active => font-weight: semibold
-
-                      subItem.path === pathname
-                        ? "bg-accent-secondary text-white"
-                        : ""
-                    }`}
+                    className={getLinkClass(subItem.path)} // Use helper function for class names
                   >
                     <span className="block p-2 py-1 rounded-sm w-full font-medium hover:bg-slate-700/50">
                       {subItem.title}
@@ -108,4 +105,4 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
       )}
     </div>
   );
-};
+}); // Memoized component

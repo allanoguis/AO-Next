@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SideNav from "../components/navbar/SideNav";
-import HeaderMobile from "../components/navbar/HeaderMobile";
-import WrapperMain from "../components/navbar/pageWrapper";
-import HeaderMain from "../components/navbar/HeaderMain";
+import SideBar from "@/components/navbar/sideNav";
+import HeaderMobile from "@/components/navbar/mobileNav";
+import HeaderMain from "@/components/navbar/topNav";
 import { ThemeProvider } from "next-themes";
-const currentDate = new Date();
-const year = currentDate.getFullYear();
+
+const year = new Date(Date.now()).getFullYear();
 
 export const metadata: Metadata = {
   title: `madtoken © ${year}`,
@@ -20,16 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="light">
-        <ThemeProvider>
+      <body>
+        <ThemeProvider attribute="class">
           <HeaderMain />
           <HeaderMobile />
-          <div className="flex">
-            <SideNav />
-            <main className="flex-1">
-              <WrapperMain>{children}</WrapperMain>
-            </main>
-          </div>
+          <main className="flex w-screen">
+            <SideBar />
+            <section className="flex-1 bg-background">{children}</section>
+          </main>
         </ThemeProvider>
       </body>
     </html>

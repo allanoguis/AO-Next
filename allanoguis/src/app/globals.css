@@ -3,8 +3,36 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'PlanetFont';
-  src: url('../fonts/SpaceGrotesk-Regular.ttf') format(truetype);
+  font-family: 'spacefont';
+  src: url('../fonts/SpaceGrotesk-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'spacefont-light';
+  src: url('../fonts/SpaceGrotesk-Light.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'spacefont-bold';
+  src: url('../fonts/SpaceGrotesk-Bold.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'spacefont-semibold';
+  src: url('../fonts/SpaceGrotesk-SemiBold.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'spacefont-medium';
+  src: url('../fonts/SpaceGrotesk-Medium.ttf');
   font-weight: 100 900;
   font-style: normal;
 }
@@ -49,33 +77,9 @@
   --hamburgerbg: 0, 255, 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 15, 23, 42;
-    --foreground: 0, 0, 0;
-    --body-text: 0, 255, 0;
-    --logo-bg: 230, 38, 38;
-    --logo-text: 255, 255, 255;
-    --nav-menu: 0, 0, 0;
-    --nav-sub: 0, 0, 0;
-    --border: 0, 255, 0;
-    --cta: 0, 0, 0;
-    --cta-text: 0, 0, 0;
-    --cta-active: 0, 0, 0;
-    --btn-primary: 0, 0, 0;
-    --btn-secondary: 0, 0, 0;
-    --accent-primary: 71, 85, 105;
-    --accent-secondary: 51, 65, 85;
-    --cell-color: 0, 255, 0;
-    --hamburgerbg: 0, 255, 0;
-  }
-}
-
 body {
   overscroll-behavior: none;
-  font-family: 'PlanetFont', sans-serif;
-  color: rgba(var(--body-text));
-  background-color: rgba(var(--background));
+  font-family: 'spacefont', sans-serif;
   transition: 400ms ease;
 }
 
