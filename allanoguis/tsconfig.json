@@ -33,7 +33,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/games/conway/conwayres.js"
   ],
   "exclude": [
     "node_modules"

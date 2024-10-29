@@ -3,7 +3,7 @@ import React from "react";
 import GameOfLife from "@/games/conway/ConwayEngine3";
 
 const gameProps = {
-  cellsize: 5,
+  cellSize: 5,
   width: 300,
   height: 400,
   isRunning: false,

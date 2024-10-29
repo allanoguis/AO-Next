@@ -132,7 +132,7 @@ const GameOfLife: React.FC<GameOfLifeProps> = ({ onGridUpdate }) => {
           setShowInputs={setShowInputs} // Pass setter for visibility
         />
       </div>
-      <div className={styles.gridwrapper}>
+      <div className={styles.gridWrapper}>
         <canvas ref={canvasRef} width={width} height={height} />
       </div>
     </div>

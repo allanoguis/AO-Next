@@ -64,6 +64,7 @@ const MenuItem = React.memo(({ item }: { item: SideNavItem }) => {
             </div>
 
             {/* Menu item dropdown icon */}
+
             <div className={`${isActive ? `duration-200 ease-in ` : ""} flex`}>
               <AiModelIcon size={16} />
             </div>

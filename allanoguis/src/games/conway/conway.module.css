@@ -1,0 +1,72 @@
+.grid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 1%;
+}
+
+.gridWrapper {
+    display: grid;
+    justify-content: center;
+}
+
+/* input styling */
+.input {
+    display: block;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+}
+
+.input>input {
+    margin: 10px;
+    padding: 8px;
+    width: 250px;
+    height: 8px;
+    opacity: 0.5;
+    transition: 200ms ease-in-out;
+}
+
+.input>p {
+    font-size: smaller;
+}
+
+.input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+}
+
+.input>input:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.input>button {
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.input>button:hover {
+    opacity: 0.8;
+    color: red;
+}
+
+/* button styling */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem;
+    padding: 10px 20px;
+}
+
+
+
+.buttons>button:hover {
+    color: red;
+    color: hsl(0, 100%, 50%)
+}

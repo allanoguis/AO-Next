@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SideBar from "@/components/navbar/sideNav";
+import SideBar from "@/components/navbar/SideNav";
 import HeaderMobile from "@/components/navbar/mobileNav";
 import HeaderMain from "@/components/navbar/topNav";
 import { ThemeProvider } from "next-themes";
@@ -23,9 +23,11 @@ export default function RootLayout({
         <ThemeProvider attribute="class">
           <HeaderMain />
           <HeaderMobile />
-          <main className="flex w-screen">
             <SideBar />
             <section className="flex-1 bg-background">{children}</section>
+          <SideBar />
+          <main className="flex-1 md:pl-60 mt-4 ml-8 bg-background">
+            {children}
           </main>
         </ThemeProvider>
       </body>
